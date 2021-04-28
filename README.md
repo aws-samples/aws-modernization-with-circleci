@@ -1,17 +1,7 @@
-## My Project
 
-TODO: Fill this README out!
 
-Be sure to:
+# AWS Modernization Workshop with CircleCI
 
-* Change the title in this README
-* Edit your repository description on GitHub
+CircleCI will be adding more details here later
 
-## Security
-
-See [CONTRIBUTING](CONTRIBUTING.md#security-issue-notifications) for more information.
-
-## License
-
-This library is licensed under the MIT-0 License. See the LICENSE file.
 
