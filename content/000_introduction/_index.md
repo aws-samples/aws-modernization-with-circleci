@@ -16,3 +16,6 @@ This workshop is broken into the sections list below.
 [comment]: <> (Add length of workshop or per module)
 
 - **Prerequisites** ***(5 minutes)*** Provision a Cloud9 instance and validate
+- **Test Driven Development and Continuous Integration** ***(6 Minutes)*** Automate test with CircleCI and store results in Amazon S3
+- **Module 1** ***(7 Minutes)*** Automate deploy with CodeDeploy on test coverage pass + manual approval
+- **Module 2** ***(6 Minutes)*** Automate deploy with AWS Beanstalk
