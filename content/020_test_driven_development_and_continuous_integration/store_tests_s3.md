@@ -1,5 +1,5 @@
 ---
-title: ""
+title: "1.4 Storing tests in S3"
 chapter: true
 weight: ADD WEIGHT
 ---
@@ -16,18 +16,12 @@ weight: ADD WEIGHT
 
 2. Add a section for storing the test data:
 
-```
+```YAML
 steps:
-      - checkout
-      - run: npm install
-      - run: mkdir ~/junit
-      - run:
-          command: mocha test --reporter mocha-junit-reporter
-          environment:
-            MOCHA_FILE: ~/junit/test-results.xml
-          when: always
-      - store_test_results:
-          path: ~/junit
-      - store_artifacts:
-          path: ~/junit
+     - store_artifacts:
+          path: test-results
+      - deploy:
+          command: 
+              mv -- test-results $CIRCLE_ARTIFACTS/$ARTIFACT_BUILD
+              aws s3 cp $CIRCLE_ARTIFACTS/$ARTIFACT_BUILD s3://test-results-bohrman/test-data/ --metadata {\"git_sha1\":\"$CIRCLE_SHA1\"}
 ```

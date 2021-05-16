@@ -1,5 +1,5 @@
 ---
-title: ""
+title: "1.3 Automating test integration"
 chapter: true
 weight: ADD WEIGHT
 ---
@@ -12,17 +12,8 @@ weight: ADD WEIGHT
 
 3. Create your test automation workflow:
 
-```
+```YAML
 jobs:
-  build:
-    docker:
-      - image: circleci/node:9.9.0
-        auth:
-          username: $DOCKERHUB_USERNAME 
-          password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
-    steps:
-      - checkout
-      - run: echo "this is the build job"
   test:
     docker:
       - image: circleci/node:9.9.0
@@ -32,11 +23,12 @@ jobs:
     steps:
       - checkout
       - run: echo "this is the test job"
-workflows:
-  build_and_test:
-    jobs:
-      - build
-      - test
+      - run: npm install
+      - run:
+          name: Run tests with JUnit as reporter
+          command: npm test --ci --runInBand --reporters=default --reporters=jest-junit
+          environment:
+            JEST_JUNIT_OUTPUT_DIR: test-results
 ```
 
 # Store tests locally

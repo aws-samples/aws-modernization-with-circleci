@@ -1,15 +1,21 @@
 ---
-title: ""
+title: "1.2 Adding tests"
 chapter: true
 weight: ADD WEIGHT
 ---
 
-# Adding a test
+## Step 1 – Add tests to your demo app
 
-1. Open `app.test.js`
+Now you will create some tests for your application. Navigate to the `app.test.js` file in the demo application your created in the last step and add a test:
 
-2. ADD TEST
+```js
+it('renders without crashing', () => {
+  const div = document.createElement('div');
+  ReactDOM.render(<App />, div);
+  ReactDOM.unmountComponentAtNode(div);
+});
+```
 
-# Running test locally
+# Step 2. Running tests locally
 
-TODO: Run test locally
+To run your test locally, run `npm test`
