@@ -14,5 +14,5 @@ Now that we've added another test, let's add a `store_artifacts` step to track o
           path: coverage
 ```
 
-# Setting a threshold for out test coverage
+# Setting a threshold for test coverage
 
