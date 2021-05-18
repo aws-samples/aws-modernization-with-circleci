@@ -20,4 +20,4 @@ describe('Addition', () => {
 
 Let's run this test locally now with `npm test` and check out the test coverage:
 
-TODO: Add screenshot
+![](https://d585tldpucybw.cloudfront.net/sfimages/default-source/default-album/06-09.png?sfvrsn=149c482_1)
