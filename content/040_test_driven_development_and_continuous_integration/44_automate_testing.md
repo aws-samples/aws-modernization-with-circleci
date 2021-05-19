@@ -33,5 +33,11 @@ jobs:
 
 # Store tests locally
 
+Add the `jest-junit` config to your `package.json` and configure the output directory for your tests:
 
-
+```YAML
+"jest-junit": {
+    "suiteName": "jest tests",
+    "outputDirectory": ".",
+    "outputName": "test-results/junit.xml",
+```
