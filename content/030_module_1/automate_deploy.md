@@ -1,16 +1,16 @@
 ---
-title: "2.4 Setup and automate static website hosting"
+title: "2.4 Set up and automate static website hosting"
 chapter: true
 weight: ADD WEIGHT
 ---
 
 # Automate deploy with CodeDeploy on test coverage pass
 
-Now let's use CircleCI's AWS Codedeploy integration to continuously deploy updates to our app when our tests pass. 
+Now we are going to use CircleCI's AWS Codedeploy integration to continuously deploy updates to our app when our tests pass. 
 
-## Step 1. Instell AWS Code Deploy Executer
+## Step 1. Install AWS Code Deploy Executer
 
-We're going to leverage a script called the AWS Code Deploy Exectuter to deploys applications with the AWS Code Deploy service. 
+We are going to use a script called the AWS Code Deploy Exectuter to deploy applications with the AWS Code Deploy service. 
 
 The script uses the AWS CLI for underlying commands and extends functionality to provide common requirements for applications being deployed including compression, encryption, bucket revision limiting, monitoring, and more.
 
@@ -24,11 +24,11 @@ The file can then be executed directly: ./node_modules/aws-code-deploy/bin/aws-c
 
 ## Step 2. Setup environment variables
 
-Environment variables are used to control the deployment actions. Which we will need to set up in our CircleCI CircleCI Enviroment Variables control panel. 
+Environment variables are used to control the deployment actions. We can set these up in our CircleCI CircleCI Enviroment Variables control panel. 
 
 ![](..\static\images\envci.png)
 
-A brief summary of the variables is listed in the table below. Full descriptions with recommendations can be found by searching the readme for the variable name.
+A brief summary of the variables is listed in the table following. Full descriptions with recommendations can be found by searching the readme for the variable name.
 
 | Variable                                          | Required | Description                                                |
 | :-------------------------------------------------| :------- | :----------------------------------------------------------|
@@ -53,9 +53,9 @@ A brief summary of the variables is listed in the table below. Full descriptions
 | `AWS_CODE_DEPLOY_DEPLOYMENT_DESCRIPTION`          | No       | A description that is stored within AWS Code Deploy that stores information about the specific deployment           |
 | `AWS_CODE_DEPLOY_OUTPUT_STATUS_LIVE`              | No       | Boolean `true\|false` that specifies whether the deployment status should use a single line showing live status. 
 
-## Add deployment to your `config.yml`
+## Step 3 Add deployment to your `config.yml`
 
-Let's add the required content to our workflows now:
+Add the required content to our workflows:
 
 ```YAML
 deployment:
@@ -65,9 +65,9 @@ deployment:
       - bash vendor/bin/aws-code-deploy.sh
 ```
 
-## Setup manual approval
+## Step 4 Setup manual approval
 
-For times when you’d prefer to keep manual approvals in place, you can easily configure the manual approval process by adding to your workflow a special job containing a `type: approval` entry:
+There are times when you prefer to keep manual approvals in place. You can easily configure a manual approval process by changing your workflow to include a special job containing a `type: approval` entry:
 
 ```YAML
 version: 2

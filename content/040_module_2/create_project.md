@@ -1,12 +1,10 @@
 ---
-title: "3.1 Create new project"
+title: "3.1 Create a new project"
 chapter: true
 weight: ADD WEIGHT
 ---
 
-# Create new project
-
-Let's create a new Express project. Open your terminal and run:
+For this module, we need to create a new Express project. Open your terminal and run:
 
 ```bash
 $ npm install -g express-generator
@@ -15,7 +13,7 @@ $ express
 
 # Add tests
 
-Now let's add some tests. Open your `spec.js` application and add these tests:
+To add some tests, open your `spec.js` application and add:
 
 ```javascript
 var request = require('supertest');

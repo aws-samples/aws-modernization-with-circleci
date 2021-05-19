@@ -4,7 +4,7 @@ chapter: true
 weight: ADD WEIGHT
 ---
 
-# Automate Testing with CircleCI
+# Automate testing with CircleCI
 
 1. Navigate to `/demo-app/` and open `.circleci`
 

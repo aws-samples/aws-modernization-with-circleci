@@ -8,10 +8,14 @@ weight: 1
 Today we are going to learn the following topics:
 
 [comment]: <> (Add learning objectives across all modules)
+- Test driven development and continuous integration
+- Continuous delivery
+-- Automated deploy with CodeDeploy
+-- Automated deploy with AWS Elastic Beanstalk
 
 # Workshop Structure
 
-This workshop is broken into the sections list below.
+This workshop is broken into the sections listed below.
 
 [comment]: <> (Add length of workshop or per module)
 

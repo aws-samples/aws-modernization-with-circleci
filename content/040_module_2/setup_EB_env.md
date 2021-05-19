@@ -1,12 +1,12 @@
 ---
-title: "3.3 Setup Elastic Beanstalk environment"
+title: "3.3 Set up the Elastic Beanstalk environment"
 chapter: true
 weight: ADD WEIGHT
 ---
 
-# Create a bash script to create the eb config file
+# Create the `eb` config file
 
-Let's add a `bash` script for creating the `eb` config file:
+Add a `bash` script for creating the `eb` config file:
 
 **./setup-eb.sh**
 
@@ -22,7 +22,7 @@ echo "aws_access_key_id=$AWS_ACCESS_KEY_ID" >> /home/ubuntu/.aws/config
 echo "aws_secret_access_key=$AWS_SECRET_ACCESS_KEY" >> /home/ubuntu/.aws/config
 ```
 
-# Create the EB Cli config file
+# Create the Elastic Beanstalk ClI config file
 
 `eb init` will create this file for you. However, if you don't want to run it, you can simply create and configure this file manualy:
 
