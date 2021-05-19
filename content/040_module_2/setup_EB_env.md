@@ -4,7 +4,7 @@ chapter: true
 weight: ADD WEIGHT
 ---
 
-# Create the `eb` config file
+## Step 1 &mdash; Create the `eb` config file
 
 Add a `bash` script for creating the `eb` config file:
 
@@ -22,7 +22,7 @@ echo "aws_access_key_id=$AWS_ACCESS_KEY_ID" >> /home/ubuntu/.aws/config
 echo "aws_secret_access_key=$AWS_SECRET_ACCESS_KEY" >> /home/ubuntu/.aws/config
 ```
 
-# Create the Elastic Beanstalk ClI config file
+## Step 2 &mdash; Create the Elastic Beanstalk ClI config file
 
 `eb init` will create this file for you. However, if you don't want to run it, you can simply create and configure this file manualy:
 

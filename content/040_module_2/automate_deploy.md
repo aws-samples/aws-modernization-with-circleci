@@ -4,7 +4,7 @@ chapter: true
 weight: ADD WEIGHT
 ---
 
-# Configure `config.yaml`
+## Step 1 &mdash; Configure `config.yaml`
 
 Add the awsebcli dependency:
 

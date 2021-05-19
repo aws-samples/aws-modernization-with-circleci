@@ -4,7 +4,7 @@ chapter: true
 weight: ADD WEIGHT
 ---
 
-## Step 1 – Add tests to your demo app
+## Step 1 &mdash; Add tests to your demo app
 
 Now you will create some tests for your application. Go to the `app.test.js` file in the demo application you created in the last step. Add a test:
 
@@ -16,6 +16,6 @@ it('renders without crashing', () => {
 });
 ```
 
-# Step 2. Run tests locally
+## Step 2 &mdash; Run tests locally
 
-To run your test locally, run `npm test`
+To run your test locally, run `npm test`.

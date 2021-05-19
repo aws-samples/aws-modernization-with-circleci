@@ -4,7 +4,7 @@ chapter: true
 weight: ADD WEIGHT
 ---
 
-# Setup Amazon S3
+## Step 1 &mdash; Setup Amazon S3
 
 1. Sign into the [AWS Console](https://console.aws.amazon.com/console/home)
 
@@ -18,7 +18,7 @@ weight: ADD WEIGHT
 
 6. Select **Use this bucket to host a website**.    
 
-# Store tests in Amazon S3
+## Step 2 &mdash; Store tests in Amazon S3
 
 1. Open the `config.yaml` file.
 

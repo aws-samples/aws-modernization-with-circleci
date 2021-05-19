@@ -4,7 +4,7 @@ chapter: true
 weight: ADD WEIGHT
 ---
 
-# Automate testing with CircleCI
+## Step 1 &mdash; Automate testing with CircleCI
 
 1. Navigate to `/demo-app/` and open `.circleci`
 
@@ -31,7 +31,7 @@ jobs:
             JEST_JUNIT_OUTPUT_DIR: test-results
 ```
 
-# Store tests locally
+## Step 2 &mdash; Store tests locally
 
 Add the `jest-junit` config to your `package.json` and configure the output directory for your tests:
 

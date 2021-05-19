@@ -4,11 +4,9 @@ chapter: true
 weight: ADD WEIGHT
 ---
 
-# Implementing security scans
-
 Next, we will add some DevSecOps to our pipeline by implementing OSS vulnerability scanning with FOSSA. 
 
-## Setup environment variables
+## Step 1 &mdash; Setup environment variables
 
 First, grab a [FOSSA API Key](https://docs.fossa.com/docs/api-reference) from your FOSSA account under your [Integration Settings](https://app.fossa.io/account/settings/integrations/api_tokens).
 
@@ -18,7 +16,7 @@ If you are the maintainer of a public repository you should consider making your
 
 ![](https://files.readme.io/7b30baf-Screen_Shot_2018-03-30_at_11.50.46_AM.png)
 
-## Add FOSSA steps to `config.yml`
+## Step 2 &mdash; Add FOSSA steps to `config.yml`
 
 Once the environment variable is ready, it is time to edit your `.circleci/config.yml` file.
 
@@ -41,7 +39,7 @@ Next, add a step to run the `fossa` command you just installed to upload depende
     working_directory: $YOUR_CODE_DIRECTORY
 ```
 
-## Blocking CI builds w/ FOSSA issue status
+## Step 3 &mdash; Blocking CI builds w/ FOSSA issue status
 
 You can also create a step in CircleCI that will allow you to pass/fail a build based on your scan status in FOSSA.
 

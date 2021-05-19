@@ -4,6 +4,8 @@ chapter: true
 weight: ADD WEIGHT
 ---
 
+## Step 1 &mdash; Create an Express project
+
 For this module, we need to create a new Express project. Open your terminal and run:
 
 ```bash
@@ -11,7 +13,7 @@ $ npm install -g express-generator
 $ express
 ```
 
-# Add tests
+## Step 2 &mdash; Add tests
 
 To add some tests, open your `spec.js` application and add:
 

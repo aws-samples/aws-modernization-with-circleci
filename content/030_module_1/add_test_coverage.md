@@ -4,7 +4,7 @@ chapter: true
 weight: ADD WEIGHT
 ---
 
-# Add step for test coverage
+## Step 1 &mdash; Add step for test coverage
 
 Now that we have added another test, we can add a `store_artifacts` step to track our test coverage:
 
@@ -14,11 +14,11 @@ Now that we have added another test, we can add a `store_artifacts` step to trac
           path: coverage
 ```
 
-# Setting a threshold for test coverage
+## Step 2 &mdash; Setting a threshold for test coverage
 
 The ultimate goal of continuous integration is continuous deployment and the ability to deploy with confidence. Implementing this in our pipeline will help us meet this goal by adding coverage threshholds. When thresholds are not met, the pipeline stops the deployment.
 
-## Setting up CodeCov
+## Step 3 &mdash; Setting up CodeCov
 
 First, link [Github and CodeCov](https://codecov.io/gh)
 
@@ -28,7 +28,7 @@ Next, create an environment variable in the CircleCI control panel called CODECO
 
 ![](https://res.cloudinary.com/practicaldev/image/fetch/s--3K3VQSMY--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://cdn-images-1.medium.com/max/4096/1%2Awc9DhJlo4GVU0FmGCFY6pQ.png)
 
-## Add `codecov.yml`
+## Step 4 &mdash; Add `codecov.yml`
 
 Now we need to add a YAML file to your project to configure the threshholds for CodeCov. Create a file called `codecov.yml` and add this config into it:
 
@@ -44,7 +44,7 @@ coverage:
         threshold: 1%  # the leniency in hitting the target
 ```
 
-## Add step to `config.yaml`
+## Step 5 &mdash; Add step to `config.yaml`
 
 Then, we need to customize our `config.yml` to add the `Send to codecov` step:
 

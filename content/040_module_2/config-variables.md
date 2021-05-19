@@ -4,7 +4,7 @@ chapter: true
 weight: ADD WEIGHT
 ---
 
-# Configure environment variables
+## Step 1 &mdash; Configure environment variables
 
 Navigate to `Project Settings > Environment Variables` in the CircleCI control panel and add these keys:
 
