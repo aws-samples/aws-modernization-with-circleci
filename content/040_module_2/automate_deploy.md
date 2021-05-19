@@ -1,5 +1,5 @@
 ---
-title: "3.3 Setup Elastic Beanstalk environment"
+title: "3.3 Automate Elastic Beanstalk deployment"
 chapter: true
 weight: ADD WEIGHT
 ---
