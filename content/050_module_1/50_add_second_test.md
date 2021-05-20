@@ -1,12 +1,12 @@
 ---
-title: "2.1 Add second test"
+title: "2.1 Add a second test"
 chapter: true
 weight: 10
 ---
 
-# Adding a second test
+## Step 1 &mdash; Adding a second test
 
-Let's add another test to `app.test.js` now. We're going to go with a simple function to test state:
+Now it is time to add another test to `app.test.js`. We are going to use a simple function to test state:
 
 ```js
 describe('Addition', () => {
@@ -16,8 +16,8 @@ describe('Addition', () => {
 });
 ```
 
-# Running test locally
+## Step 2 &mdash; Running the test locally
 
-Let's run this test locally now with `npm test` and check out the test coverage:
+Run this test locally with `npm test` and check out the test coverage:
 
 ![](https://d585tldpucybw.cloudfront.net/sfimages/default-source/default-album/06-09.png?sfvrsn=149c482_1)

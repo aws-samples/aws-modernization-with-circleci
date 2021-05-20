@@ -4,9 +4,9 @@ chapter: true
 weight: 12
 ---
 
-## Step 1 – Add tests to your demo app
+## Step 1 &mdash; Add tests to your demo app
 
-Now you will create some tests for your application. Navigate to the `app.test.js` file in the demo application your created in the last step and add a test:
+Now you will create some tests for your application. Go to the `app.test.js` file in the demo application you created in the last step. Add a test:
 
 ```js
 it('renders without crashing', () => {
@@ -16,6 +16,6 @@ it('renders without crashing', () => {
 });
 ```
 
-# Step 2. Running tests locally
+## Step 2 &mdash; Run tests locally
 
-To run your test locally, run `npm test`
+To run your test locally, run `npm test`.
