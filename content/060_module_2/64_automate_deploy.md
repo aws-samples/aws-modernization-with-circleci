@@ -1,10 +1,10 @@
 ---
 title: "3.3 Automate Elastic Beanstalk deployment"
 chapter: true
-weight: ADD WEIGHT
+weight: 14
 ---
 
-# Configure `config.yaml`
+## Step 1 &mdash; Configure `config.yaml`
 
 Add the awsebcli dependency:
 

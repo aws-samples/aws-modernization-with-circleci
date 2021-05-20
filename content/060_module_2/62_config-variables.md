@@ -1,16 +1,16 @@
 ---
 title: "3.2 Configure Elastic Beanstalk env variables"
 chapter: true
-weight: ADD WEIGHT
+weight: 12
 ---
 
-# Configure Environment Variables
+## Step 1 &mdash; Configure environment variables
 
-Let's navigate to `Project Settings > Environment Variables` in the CircleCI control panel and add these keys:
+Navigate to `Project Settings > Environment Variables` in the CircleCI control panel and add these keys:
 
 ```
 AWS_ACCESS_KEY_ID
 AWS_SECRET_ACCESS_KEY
 ```
 
-Make sure the AWS user has the right permissions.
+Make sure the AWS user has the correct permissions.
