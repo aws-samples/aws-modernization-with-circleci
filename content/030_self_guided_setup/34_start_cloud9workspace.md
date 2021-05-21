@@ -17,17 +17,17 @@ We will use Amazon Cloud9 to access our AWS accounts via the AWS CLI in this Wor
 
 ## Create a new Cloud9 IDE environment
 
-1 . Within the AWS console, use the region drop list to select **us-east-1 (N. Virginia)**.  This will ensure the workshop script provisions the resources in this same region..
+1. Within the AWS console, use the region drop list to select **us-east-1 (N. Virginia)**.  This will ensure the workshop script provisions the resources in this same region..
 
-2 . Navigate to the [Cloud9 console](https://console.aws.amazon.com/cloud9/home) or just search for it under the **AWS console services** menu.
+1. Navigate to the [Cloud9 console](https://console.aws.amazon.com/cloud9/home) or just search for it under the **AWS console services** menu.
 
-3 . Click the **Create environment** button
+1. Click the **Create environment** button
 
-4 . For the name use `partnerName-workshop`, then click **Next step**
+1. For the name use `circleci-workshop`, then click **Next step**
 
-5 . Select the default instance type **t3.micro**
+1. Select the default instance type **t3.micro**
 
-6 . Leave all the other settings as default and click **Next step** followed by **Create environment**
+1. Leave all the other settings as default and click **Next step** followed by **Create environment**
 
 <img src=/images/setup/c9create.png>
 
@@ -39,15 +39,11 @@ This will take about 1-2 minutes to provision
 
 When the environment comes up, customize the environment by:
 
-1 . Close the **welcome page** tab
+1. Close the **welcome page** tab
 
-2 . Close the **lower work area** tab
+1. Close the **lower work area** tab
 
-3 . Open a new **terminal** tab in the main work area.
-
-4 . Hide the left hand environment explorer by clicking on the left side **environment** tab.
-
-<img src=/images/setup/cloud9config.gif width="75%" height="57%">
+1. Open a new **terminal** tab in the main work area.
 
 {{% notice tip %}}
 If you don't like this dark theme, you can change it from the **View / Themes** Cloud9 workspace menu.

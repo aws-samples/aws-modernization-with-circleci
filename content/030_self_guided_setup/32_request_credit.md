@@ -16,14 +16,14 @@ not receive an email confirmation, please check your company spam filter.
 If you're still having difficulty, please contact ajonsso@amazon.com.
   </td>
 
-  <td class="credit" style="width:30%"> <a href="https://pages.awscloud.com/awsmp-wsm-dev-workshop-series-credit-request.html?trk=lab_{partnerName}" target="_blank" class="credit-btn">Request AWS Credits</a>  </td>
+  <td class="credit" style="width:30%"> <a href="https://pages.awscloud.com/awsmp-wsm-dev-workshop-series-credit-request.html?trk=lab_circleci" target="_blank" class="credit-btn">Request AWS Credits</a>  </td>
 </tr>
 </table>
 
 <table class="credit" style="width:100%">
 <tr class="credit">
   <td class="credit" style="width:40%"> 
-      <a href="https://aws.amazon.com/marketplace" target="_blank"><img src="/images/setup/available-in-awsmp-badge.png"></a>
+      <a href="https://aws.amazon.com/marketplace/pp/B08NFB2K88?&trk=el_a134p000003yrYeAAI&trkCampaign=AWSMP_pdp_dev_x_dg&sc_channel=el&sc_campaign=el_awsmp_mult&sc_outcome=Marketplace" target="_blank"><img src="/images/setup/available-in-awsmp-badge.png"></a>
   </td>
 
   <td class="credit" style="width:60%">
@@ -37,7 +37,7 @@ If you're still having difficulty, please contact ajonsso@amazon.com.
 <table class="credit">
 <tr class="credit"><td class="credit" style="width:100%">
 {{% notice note %}}
-[AWS Marketplace](https://aws.amazon.com/marketplace) is a digital software catalog that makes it easy to find, try, buy, deploy, and manage 
+[AWS Marketplace](https://aws.amazon.com/marketplace/solutions/devops) is a digital software catalog that makes it easy to find, try, buy, deploy, and manage 
 software that works with AWS. AWS Marketplace has over 8,000 listings from 1,600+ ISV's that can
 help you master DevOps and drive modern application development in the cloud.
 {{% /notice %}}

@@ -24,7 +24,7 @@ echo "aws_secret_access_key=$AWS_SECRET_ACCESS_KEY" >> /home/ubuntu/.aws/config
 
 ## Step 2 &mdash; Create the Elastic Beanstalk ClI config file
 
-`eb init` will create this file for you. However, if you don't want to run it, you can simply create and configure this file manualy:
+`eb init` will create this file for you. However, if you don't want to run it, you can simply create and configure this file manually:
 
 **./elasticbeanstalk/config.yml**
 

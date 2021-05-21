@@ -24,7 +24,7 @@ We will use Amazon Cloud9 to access our AWS accounts via the AWS CLI in this Wor
 
 1. Click the **Create environment** button
 
-1. For the name use `partnerName-workshop`, then click **Next step**
+1. For the name use `circleci-workshop`, then click **Next step**
 
 1. Select the default instance type **t3.micro**
 
@@ -42,13 +42,10 @@ When the environment comes up, customize the environment by:
 
 1 . Close the **welcome page** tab
 
-2 . Close the **lower work area** tab
+1. Close the **lower work area** tab
 
-3 . Open a new **terminal** tab in the main work area.
+1. Open a new **terminal** tab in the main work area.
 
-4 . Hide the left hand environment explorer by clicking on the left side **environment** tab.
-
-<img src=/images/setup/cloud9config.gif width="75%" height="57%">
 
 {{% notice tip %}}
 If you don't like this dark theme, you can change it from the **View / Themes** Cloud9 workspace menu.
