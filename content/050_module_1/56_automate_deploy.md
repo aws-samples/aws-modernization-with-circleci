@@ -4,7 +4,7 @@ chapter: true
 weight: 16
 ---
 
-Now we are going to use CircleCI's AWS CodeDeploy integration to continuously deploy updates to our app when our tests pass.
+Now we are going to use CircleCI's AWS CodeDeploy integration to continuously deploy updates to our app when our tests pass. AWS CodeDeploy is a service that allows teams to easily automate application deployments to Amazon EC2 instances, on-premises instances, serverless Lambda functions and other services. 
 
 ## Step 1 &mdash; Install AWS Code Deploy Executor
 

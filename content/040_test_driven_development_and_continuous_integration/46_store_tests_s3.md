@@ -12,11 +12,17 @@ weight: 16
 
 3. Attach a [public bucket policy](https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-policy-language-overview.html) to the bucket.
 
+![](https://tituschoi.com/wp-content/uploads/2017/08/aws-s3-bucket-policy.png)
+
 4. Navigate to **Properties**.
 
 5. Under **Static website hosting**, select Edit.
 
-6. Select **Use this bucket to host a website**.    
+![](https://4sysops.com/wp-content/uploads/2019/04/Static-website-hosting-option.png)
+
+6. Select **Use this bucket to host a website**.
+
+![](https://i.stack.imgur.com/m1MQ9.png)
 
 ## Step 2 &mdash; Store tests in Amazon S3
 

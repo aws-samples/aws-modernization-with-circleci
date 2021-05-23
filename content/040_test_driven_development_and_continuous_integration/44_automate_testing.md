@@ -6,9 +6,17 @@ weight: 14
 
 ## Step 1 &mdash; Automate testing with CircleCI
 
-1. Navigate to `/demo-app/` and open `.circleci`
+1. Navigate into the CircleCI directory with:
 
-2. Add a file called `config.yaml`
+```bash
+cd /demo-app/.circleci
+```
+
+2. Create a new config by running:
+
+```bash
+touch config.yaml
+```
 
 3. Create your test automation workflow:
 
@@ -30,6 +38,8 @@ jobs:
           environment:
             JEST_JUNIT_OUTPUT_DIR: test-results
 ```
+
+This configuration is creating a job called `test` that leveraged the `node:9.9.0` Docker image to run tests and report those tests to Junit. 
 
 ## Step 2 &mdash; Store tests locally
 

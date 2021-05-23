@@ -4,6 +4,8 @@ chapter: true
 weight: 12
 ---
 
+In this section we will be using a tool called CodeCov to implement continuous test coverage analysis of our application. This is an important practice because it allows teams to ensure that their tests are testing all of their code and how much of their code of being exercised. 
+
 ## Step 1 &mdash; Add step for test coverage
 
 Now that we have added another test, we can add a `store_artifacts` step to track our test coverage:

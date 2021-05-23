@@ -4,7 +4,7 @@ chapter: true
 weight: 14
 ---
 
-Next, we will add some DevSecOps to our pipeline by implementing OSS vulnerability scanning with FOSSA.
+Next, we will add some DevSecOps to our pipeline by implementing OSS vulnerability scanning. We will be leveraging a tool called FOSSA which allows teams to continuously scan their repos for vulnarable dependencies and artifacts.
 
 ## Step 1 &mdash; Setup environment variables
 
