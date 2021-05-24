@@ -40,3 +40,5 @@ We will use CircleCI’s `deploy` command to ship the code. `deploy` works just 
               echo "Not master branch, dry run only"
         fi
 ```
+
+We're now completed adding continuous vulnerability and test coverage analysis, it's now time to set up the pipeline to deploy the application on S3.

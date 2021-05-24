@@ -4,7 +4,7 @@ chapter: true
 weight: 10
 ---
 
-Infrastructure at CircleCI is organized into projects. Each project is a single program that, when run, declares the desired infrastructure for us to manage.
+Infrastructure at CircleCI is organized into [projects](https://circleci.com/docs/2.0/project-build/). Each project is a single program that, when run, declares the desired infrastructure for us to manage.
 
 ## Step 1 &mdash; Create a new project
 

@@ -1,12 +1,10 @@
 ---
-title: "Module 2"
+title: "Automating Elastic Beanstalk"
 chapter: true
 draft: false
 weight: 6
 ---
 
-# Some Title for section
+# Introduction
 
-Please add content/context/intro as to what the audience will be accomplishing this section
-
-Please name the module, don't leave as module 2
+In this section, we are going to be leveraging automation to continuously deploy our code to AWS Elastic Beanstalk. We will be leveraging a CLI tool called `awsebcli` and implenting it as a script in our CircleCI configuration.
