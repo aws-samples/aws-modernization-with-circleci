@@ -56,3 +56,5 @@ Then, we need to customize our `config.yml` to add the `Send to codecov` step:
     command: |
       bash <(curl -s https://codecov.io/bash) -Z
 ```
+
+In this section, we've learned how to leverage CodeCov to implement continuous coverage analysis in our pipelines. Let's move on to the next section where we will add some vulnerability analysis with FOSSA. 

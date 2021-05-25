@@ -39,3 +39,5 @@ describe('loading express', function () {
   });
 });
 ```
+
+Now that we've learned to create a project, let's set up the variable we need to this module in the next section.

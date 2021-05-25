@@ -27,6 +27,12 @@ git branch -M main
 git push -u origin main
 ```
 
+Let's also add a directory for our CircleCI configurations by running:
+
+```bash
+mkdir .circleci
+```
+
 ## Step 3 &mdash; Inspect your new project
 
 Our project is comprised of multiple files:
@@ -36,7 +42,7 @@ Our project is comprised of multiple files:
 * **`.circleci`** is your projects configuration and metadata
 * **`app.test.js`** is where your apps tests will reside
 
-Run `node app.js` to see the contents of your project's empty program.
+Run `npm start` in the `/src/` directory to see the contents of your project's empty program.
 
 Feel free to explore the other files, although we will not be editing any of them manually.
 

@@ -21,3 +21,5 @@ describe('Addition', () => {
 Run this test locally with `npm test` and check out the test coverage:
 
 ![](https://d585tldpucybw.cloudfront.net/sfimages/default-source/default-album/06-09.png?sfvrsn=149c482_1)
+
+So now that we've gotten more tests, it's time to add some coverage analysis. In the next section, we're going to learn how to leverage CodeCov to continuously analyze our codes coverage. 
