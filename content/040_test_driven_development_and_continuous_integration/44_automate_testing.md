@@ -9,7 +9,7 @@ weight: 14
 1. Navigate into the CircleCI directory with:
 
 ```bash
-cd /demo-app/.circleci
+cd ~/environment/ci-demo-app
 ```
 
 2. Create a new config by running:
@@ -51,3 +51,5 @@ Add the `jest-junit` config to your `package.json` and configure the output dire
     "outputDirectory": ".",
     "outputName": "test-results/junit.xml",
 ```
+
+Great, we've got some automation set up to test our code, let's learn how to continuously store our tests both locally and on the cloud.

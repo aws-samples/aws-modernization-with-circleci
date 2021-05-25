@@ -6,21 +6,19 @@ weight: 16
 
 ## Step 1 &mdash; Setup Amazon S3
 
-1. Sign into the [AWS Console](https://console.aws.amazon.com/console/home)
+1. Create an S3 bucket in `us-east-1`.
 
-2. Create an S3 bucket in your preferred region.
-
-3. Attach a [public bucket policy](https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-policy-language-overview.html) to the bucket.
+2. Attach a [public bucket policy](https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-policy-language-overview.html) to the bucket.
 
 ![](https://tituschoi.com/wp-content/uploads/2017/08/aws-s3-bucket-policy.png)
 
-4. Navigate to **Properties**.
+3. Navigate to **Properties**.
 
-5. Under **Static website hosting**, select Edit.
+4. Under **Static website hosting**, select Edit.
 
 ![](https://4sysops.com/wp-content/uploads/2019/04/Static-website-hosting-option.png)
 
-6. Select **Use this bucket to host a website**.
+5. Select **Use this bucket to host a website**.
 
 ![](https://i.stack.imgur.com/m1MQ9.png)
 
@@ -37,5 +35,7 @@ steps:
       - deploy:
           command: 
               mv -- test-results $CIRCLE_ARTIFACTS/$ARTIFACT_BUILD
-              aws s3 cp $CIRCLE_ARTIFACTS/$ARTIFACT_BUILD s3://test-results-bohrman/test-data/ --metadata {\"git_sha1\":\"$CIRCLE_SHA1\"}
+              aws s3 cp $CIRCLE_ARTIFACTS/$ARTIFACT_BUILD s3://{yourBucketName}/test-data/ --metadata --metadata {\"git_sha1\":\"$CIRCLE_SHA1\"}
 ```
+
+That's it for this module, we've learned how to add some simple tests and automate their integration, as well as storing the output in Amazon S3 and locally. Let's move on to the next module where we will learn how to implement coverage analysis and how to implement security scanning in our pipelines.

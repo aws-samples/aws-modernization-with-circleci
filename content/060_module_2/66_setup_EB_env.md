@@ -40,3 +40,12 @@ global:
   profile: eb-cli
   sc: git
 ```
+
+That's it for this module! Let's recap what we've learned:
+
+1. In [Section 3.1](/060_module_2/60_create_project.html), we created our initial project structure.
+2. Next, in [Section 3.2](/060_module_2/62_config-variables.html), we configured the variables that EB needed to operate
+3. In [Section 3.3](/060_module_2/64_automate_deploy.html), we learned to leverage the `awsebcli` tool and implement it as a script in our CircleCI configuration
+4. In this section, we made this final configs to Elastic Beanstalk nececcary to automate our deployment.
+
+Let's move on to the next module where we will clean up what we've ust done!

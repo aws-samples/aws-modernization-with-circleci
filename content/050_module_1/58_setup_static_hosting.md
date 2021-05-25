@@ -41,4 +41,10 @@ We will use CircleCI’s `deploy` command to ship the code. `deploy` works just 
         fi
 ```
 
-We're now completed adding continuous vulnerability and test coverage analysis, it's now time to set up the pipeline to deploy the application on S3.
+That's it for this module! Let's recap what we've learned:
+
+1. We added a second test to our code in [Section 2.1](/050_module_1/50_add_second_test.html)
+2. In [Section 2.2](/050_module_1/52_add_test_coverage.html), we learned how to leverage CodeCov to implement continuous coverage analysis in our pipelines.
+3. In [Section 2.3](/050_module_1/54_setup_security_scan.html), we added some DevSecOps to our pipeline by implementing OSS vulnerability scanning with [FOSSA](https://fossa.com/)
+4. In [Section 2.4](/050_module_1/56_automate_deploy.html), we leveraged CircleCI's AWS CodeDeploy integration to continuously deploy updates to our app when our tests pass.
+5. Lastly, in this section, we learned to set up static hosting in AWS. 

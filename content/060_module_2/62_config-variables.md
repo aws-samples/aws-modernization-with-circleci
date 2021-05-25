@@ -13,4 +13,4 @@ AWS_ACCESS_KEY_ID
 AWS_SECRET_ACCESS_KEY
 ```
 
-Make sure the AWS user has the correct permissions.
+Make sure the AWS user has the correct permissions. That's about it in terms of variables we need for our project. Let's move on to the next section and learn how to set up our deployment.

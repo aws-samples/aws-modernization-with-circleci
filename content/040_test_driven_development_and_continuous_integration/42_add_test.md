@@ -18,4 +18,50 @@ it('renders without crashing', () => {
 
 ## Step 2 &mdash; Run tests locally
 
-To run your test locally, run `npm test`.
+To run your test locally, run `npm test`. The output shouldlook something like this:
+
+```bash
+No tests found related to files changed since last commit.
+Press `a` to run all tests, or run Jest with `--watchAll`.
+----------|---------|----------|---------|---------|-------------------
+File      | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
+----------|---------|----------|---------|---------|-------------------
+All files |       0 |        0 |       0 |       0 |                   
+----------|---------|----------|---------|---------|-------------------
+
+Watch Usage
+ › Press a to run all tests.
+ › Press f to run only failed tests.
+ › Press q to quit watch mode.
+ › Press p to filter by a filename regex pattern.
+ › Press t to filter by a test name regex pattern.
+ › Press Enter to trigger a test run.
+```
+
+Press `a` to run the tests and you should be presented with this output:
+
+```bash
+No tests found related to files changed since last commit.
+Press `a` to run all tests, or run Jest with `--watchAll`.
+----------|---------|----------|---------|---------|-------------------
+ PASS  src/App.test.js (18.699 s)
+  √ renders without crashing (36 ms)
+  √ renders welcome message (36 ms)
+  Addition
+    √ knows that 2 and 2 make 4 (3 ms)
+
+----------|---------|----------|---------|---------|-------------------
+File      | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
+----------|---------|----------|---------|---------|-------------------
+All files |       0 |        0 |       0 |       0 |                   
+----------|---------|----------|---------|---------|-------------------
+Test Suites: 1 passed, 1 total
+Tests:       3 passed, 3 total
+Snapshots:   0 total
+Time:        21.486 s
+Ran all test suites.
+
+Watch Usage: Press w to show more.
+```
+
+Now that we have our tests passing, let's move on and automate the process of integrating them into our deployments

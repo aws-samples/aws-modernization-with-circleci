@@ -54,4 +54,4 @@ To accomplish this, simply add a call to FOSSA test into your test section.
 ```
 The FOSSA test command will poll app.fossa.io or your local FOSSA appliance for updates on your scan status until it gets a response.
 
-Then, it will report a relevant exit status to the CI step (to block a failing build) and render rich details about issues directly inline with your CircleCI test results.
+Then, it will report a relevant exit status to the CI step (to block a failing build) and render rich details about issues directly inline with your CircleCI test results. In the next section, we're going to automate the process of deploying our application to AWS. 

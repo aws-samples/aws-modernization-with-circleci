@@ -4,7 +4,7 @@ chapter: true
 weight: 14
 ---
 
-Now let's configure and automate our Elasttic Beanstalk deployment by leveraging the `awsebcli` tool and implenting it as a script in our CircleCI configuration:
+Now let's configure and automate our Elasttic Beanstalk deployment by leveraging the `awsebcli` tool and implementing it as a script in our CircleCI configuration:
 
 ## Step 1 &mdash; Configure `config.yaml`
 
@@ -28,3 +28,5 @@ deployment:
       - bash ./setup-eb.sh
       - eb deploy
 ```
+
+Now that we've got the deployment config set up, let's more on to the next section to make sure we have the fight configs in our environment.
