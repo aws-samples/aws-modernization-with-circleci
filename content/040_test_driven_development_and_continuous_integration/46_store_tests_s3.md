@@ -34,8 +34,9 @@ steps:
           path: test-results
       - deploy:
           command: 
-              mv -- test-results $CIRCLE_ARTIFACTS/$ARTIFACT_BUILD
-              aws s3 cp $CIRCLE_ARTIFACTS/$ARTIFACT_BUILD s3://{yourBucketName}/test-data/ --metadata --metadata {\"git_sha1\":\"$CIRCLE_SHA1\"}
+              export ARTIFACT_BUILD=$CIRCLE_PROJECT_REPONAME-$CIRCLE_BUILD_NUM.zip
+              zip -r $ARTIFACT_BUILD test-results/
+              aws s3 cp $ARTIFACT_BUILD s3://test-results-bohrman --metadata {\"git_sha1\":\"$CIRCLE_SHA1\"}
 ```
 
 That's it for this module, we've learned how to add some simple tests and automate their integration, as well as storing the output in Amazon S3 and locally. Let's move on to the next module where we will learn how to implement coverage analysis and how to implement security scanning in our pipelines.
