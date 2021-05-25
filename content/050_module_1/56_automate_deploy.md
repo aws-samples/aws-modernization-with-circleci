@@ -22,9 +22,9 @@ The file can then be executed directly: ./node_modules/aws-code-deploy/bin/aws-c
 
 ## Step 2 &mdash; Setup environment variables
 
-Environment variables are used to control the deployment actions. We can set these up in our CircleCI CircleCI Enviroment Variables control panel.
+Environment variables are used to control the deployment actions. We can set these up in our CircleCI Environment Variables control panel.
 
-![](..\static\images\envci.png)
+![Variable Config](/images/envci.png)
 
 A brief summary of the variables is listed in the table following. Full descriptions with recommendations can be found by searching the readme for the variable name.
 

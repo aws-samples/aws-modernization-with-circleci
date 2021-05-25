@@ -14,7 +14,7 @@ Today we are going to learn the following topics:
 
 # Workshop Structure
 
-This workshop is broken into the sections listd below.  Estimated time for completing the workshop is 1.5-2.5 hours.
+This workshop is broken into the sections listed below.  Estimated time for completing the workshop is 1.5-2.5 hours.
 
 - **Prerequisites** ***(5 minutes)*** Provision a Cloud9 instance and validate
 - **Setup** ***(15 minutes)*** Install necessary tooling to complete the lab

@@ -6,9 +6,9 @@ weight: 1
 
 # AWS Modernization Workshop with CircleCI
 
-### Welcome
-
 ![CircleCi](/images/circle-logo-horizontal-black.png)
+
+### Welcome
 
 In this workshop you will learn why DevOps is a pattern for modernization and how to use patterns with CircleCI to release features and functionality at a faster pace.
 
@@ -17,8 +17,9 @@ The world’s best software teams use CircleCI to deliver quality code with conf
 ### Learning Objectives
 
 - Deploy Cloud9 as an IDE for completing workshop exercises.
-- How DevOps patterns help to release features and functionality faster.
-- Best practices for implementing 2 pizza team pipelines.
+- Implement test-driven development and continuous delivery
+- Automate testing through a pipeline
+- Automate Elastic Beanstalk
 
 {{% notice warning %}}
 <p style='text-align: left;'>

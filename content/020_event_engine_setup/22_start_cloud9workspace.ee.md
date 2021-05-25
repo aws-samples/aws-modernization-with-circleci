@@ -40,7 +40,7 @@ This will take about 1-2 minutes to provision
 
 When the environment comes up, customize the environment by:
 
-1 . Close the **welcome page** tab
+1. Close the **welcome page** tab
 
 1. Close the **lower work area** tab
 
