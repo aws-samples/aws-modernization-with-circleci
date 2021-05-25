@@ -8,7 +8,7 @@ Infrastructure at CircleCI is organized into [projects](https://circleci.com/doc
 
 ## Step 1 &mdash; Create a new project
 
-Each CircleCI project lives in its own directory. Create one now and change into it:
+We're going to leverage React in our demo application for this project. Let's create a React project now and `cd` into the directory:
 
 ```
 create-react-app $PROJECT_NAME
@@ -17,12 +17,11 @@ cd $PROJECT_NAME
 
 ## Step 2 &mdash; Initialize a Git repository
 
-We need to set up a Git repo for this project, so `cd` into the root directory and run `git init`.
-
-Then, create a new Git repo via the UI. Run these commands:
+Once we have our React application set up, we're going to want to [create a GitHub repository](https://docs.github.com/en/github/getting-started-with-github/quickstart/create-a-repo) via the UI for this project. Once that's finished let's run these commands to intiialize Git:
 
 ```bash
-git remote add origin https://github.com/$GIT_USERNAME/$PROJECT_NAME.git
+git init
+git remote add origin https://github.com/$GIT_USERNAME/$PROJECT_NAME.
 git branch -M main
 git push -u origin main
 ```
