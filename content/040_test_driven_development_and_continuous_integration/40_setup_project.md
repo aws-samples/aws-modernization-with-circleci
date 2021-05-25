@@ -11,17 +11,21 @@ Infrastructure at CircleCI is organized into [projects](https://circleci.com/doc
 We're going to leverage React in our demo application for this project. Let's create a React project now and `cd` into the directory:
 
 ```
-create-react-app $PROJECT_NAME
-cd $PROJECT_NAME
+npx create-react-app circleci-app-demo
+cd circleci-app-demo
 ```
 
 ## Step 2 &mdash; Initialize a Git repository
 
-Once we have our React application set up, we're going to want to [create a GitHub repository](https://docs.github.com/en/github/getting-started-with-github/quickstart/create-a-repo) via the UI for this project. Once that's finished let's run these commands to intiialize Git:
+Once we have our React application set up, we're going to want to [create a GitHub repository](https://docs.github.com/en/github/getting-started-with-github/quickstart/create-a-repo) via the UI for this project. Once that's finished let's run these commands to initialize Git:
+
+1. Fork from https://github.com/eugenemu/aws-workshop-demo-app.git to your GitHub account
+1. 
 
 ```bash
-git init
-git remote add origin https://github.com/$GIT_USERNAME/$PROJECT_NAME.
+ssh-keygen -t ed25519 -C "your_email@example.com"
+cat ~/.ssh/id_ed25519.pub
+git clone git@github.com:{yourGithubUserName}/circleci-demo-app.git
 git branch -M main
 git push -u origin main
 ```

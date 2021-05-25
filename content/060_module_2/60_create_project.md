@@ -6,7 +6,7 @@ weight: 10
 
 ## Step 1 &mdash; Create an Express project
 
-For this module, we need to create a new Express project. Open your terminal and run:
+For this module, we need to install Express into our app. Open your terminal and run:
 
 ```bash
 $ npm install -g express-generator
