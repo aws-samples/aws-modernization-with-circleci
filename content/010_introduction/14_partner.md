@@ -4,7 +4,7 @@ chapter: true
 weight: 14
 ---
 
-# What is CircleCI?
+## What is CircleCI?
 
 The world’s best software teams use CircleCI to deliver quality code with confidence. As the largest continuous integration and delivery (CI/CD) platform, CircleCI empowers engineers to seamlessly take ideas to execution, at scale. Our platform is optimized for developer productivity, speed, and confidence.
 

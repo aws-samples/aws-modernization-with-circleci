@@ -35,12 +35,12 @@ mkdir .circleci
 
 ## Step 3 &mdash; Inspect your new project
 
-Our project is comprised of multiple files:
+Our project comprises multiple files:
 
-* **`app.js`** is your program's main entrypoint file
+* **`App.js`** is your program's main entrypoint file
 * **`package.json`** is your project's Python dependency information
 * **`.circleci`** is your projects configuration and metadata
-* **`app.test.js`** is where your apps tests will reside
+* **`App.test.js`** is where your apps tests will reside
 
 Run `npm start` in the `/src/` directory to see the contents of your project's empty program.
 

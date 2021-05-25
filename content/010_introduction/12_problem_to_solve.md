@@ -4,7 +4,7 @@ chapter: true
 draft: false
 weight: 12
 ---
-# Lately, building the future is more challenging than ever 
+## Lately, building the future is more challenging than ever 
 
 Not too long ago, a single developer on a team could understand and conceptualize their entire tech stack — from what’s happening on the chip, to what’s displayed on the screen.
 
