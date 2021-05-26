@@ -1,5 +1,5 @@
 ---
-title: "2.5 Setup static hosting"
+title: "2.5 Set up static hosting"
 chapter: true
 weight: 18
 ---

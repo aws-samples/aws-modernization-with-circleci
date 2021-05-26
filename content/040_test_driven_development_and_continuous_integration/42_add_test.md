@@ -6,7 +6,10 @@ weight: 12
 
 ## Step 1 &mdash; Add test to your demo app
 
-Now you will create some tests for your application. Go to the `app.test.js` file in the demo application you created in the last step. Add a test:
+1. Now you will create some tests for your application. Go to the `App.test.js` file.
+2. You can select this file in your Cloud9 as such
+3. ![Select App.test.js here](/images/app-test-file.png)
+4. Add this test:
 
 ```js
 it('renders without crashing', () => {
@@ -18,7 +21,7 @@ it('renders without crashing', () => {
 
 ## Step 2 &mdash; Run test locally
 
-To run your test locally, run `npm test`. The output shouldlook something like this:
+To run your test locally, run `npm test`. The output should look similar to this:
 
 ```bash
 Enumerating objects: 7, done.
@@ -47,8 +50,4 @@ Watch Usage
  › Press Enter to trigger a test run.
 ```
 
-{{% notice info %}}
-You will need to press `A` to run the test 
-{{% /notice %}}
-
-Now that we have our test passing, let's move on and automate the process of integrating it into our deployments.
+Now that we know we have a passing test, let's move on and automate the process of integrating it into our CI/CD Pipeline.

@@ -11,8 +11,7 @@ weight: 14
 We will use Amazon Cloud9 to access our AWS accounts via the AWS CLI in this Workshop.  There are a few steps to complete to set this up
 
 1. Create a new Cloud9 IDE environment
-1. Create an EKS cluster
-1. Configure workshop specific requirements
+1. Configure workshop specific requirements such as `npm install`
 
 
 ## Create a new Cloud9 IDE environment

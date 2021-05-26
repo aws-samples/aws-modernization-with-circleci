@@ -46,7 +46,6 @@ When the environment comes up, customize the environment by:
 
 1. Open a new **terminal** tab in the main work area.
 
-
 {{% notice tip %}}
 If you don't like this dark theme, you can change it from the **View / Themes** Cloud9 workspace menu.
 {{% /notice %}}

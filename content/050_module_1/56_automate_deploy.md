@@ -81,4 +81,4 @@ release-branch-workflow:
           - request-testing
 ```
 
-In this section, we've learned how to leverage AWS CodeDeploy to automate the process of deploying our application to our environment. In the next section, we're going to learn how to setup static hosting in AWS. 
+In this section, we've learned how to leverage AWS CodeDeploy to automate the process of deploying our application to our environment. In the next section, we're going to learn how to set up static hosting in AWS. 
