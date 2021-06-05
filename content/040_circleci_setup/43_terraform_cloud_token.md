@@ -15,7 +15,7 @@ You will be using Terraform Cloud to store the [Terraform state][1] of the infra
 
 1. Create a [Terraform Cloud][4] account
 1. Create a new [Terraform Cloud organization][7]
-1. Create 2 new [Terraform Cloud workspaces][8] named **aws_workshop** and then choose the **"No VCS connection"** option
+1. Create a new [Terraform Cloud workspace][8] named **aws_workshop** and then choose the **"No VCS connection"** option
 1. In the workspace click **aws_workshop** > **Settings** > **General** then Enable [local execution mode][18]
 1. Go to the [User Settings section][16] in the Terraform Cloud Dashboard
 1. In the User Settings section, Create a new [Terraform API token][17] then copy and paste the token in a secure location for later use.
