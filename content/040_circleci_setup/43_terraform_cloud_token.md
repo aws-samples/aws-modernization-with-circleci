@@ -1,5 +1,5 @@
 ---
-title: "1.3 Terraform Cloud: Create Access Token"
+title: "1.3 Terraform Cloud: Create API Token"
 chapter: true
 weight: 14
 ---
@@ -8,25 +8,29 @@ weight: 14
 
 Terraform Cloud is an application that helps teams use Terraform together. It manages Terraform runs in a consistent and reliable environment, and includes easy access to shared state and secret data, access controls for approving changes to infrastructure, a private registry for sharing Terraform modules, detailed policy controls for governing the contents of Terraform configurations, and more.
 
-You will be using Terraform Cloud to store the [Terraform state][] of the infrastructures your pipeline will provision and deploy using Terraform in future modules.
-
+You will be using Terraform Cloud to store the [Terraform state][1] of the infrastructures your pipeline will provision and deploy using Terraform in future modules.
 
 
 ## Create Terraform Cloud Access Token
 
-1. Visit your [Snyk account (Account Settings > API Token section)][3]
-1. In the KEY field, click **click to show**, then select and copy your API token from the field.
-1. Paste the token that appears on the screen in a safe location for use in future modules.
+1. Create a [Terraform Cloud][4] account
+1. Create a new [Terraform Cloud organization][7]
+1. Create 2 new [Terraform Cloud workspaces][8] named **aws_workshop** and then choose the **"No VCS connection"** option
+1. In the workspace click **aws_workshop** > **Settings** > **General** then Enable [local execution mode][18]
+1. Go to the [User Settings section][16] in the Terraform Cloud Dashboard
+1. In the User Settings section, Create a new [Terraform API token][17] then copy and paste the token in a secure location for later use.
 
 {{% notice warning %}}
-Your Snyk access token must be protected and not shared with unauthorized parties to prevent exposure and unauthorized access.
+Your Terraform Cloud API token must be protected and not shared with unauthorized parties to prevent exposure and unauthorized access.
 {{% /notice %}}
 
-You can read more about [Snyk Access Token from their docs here][2]
-
-Great, you have created and safely stored your newly created Snyk Access Token, Now, let's create the Terraform Cloud Access Token.
+Great, you have created and safely stored your newly created Terraform Cloud API Token, Now, let's create AWS Access Keys and Secrets.
 
 <!-- URL Links index -->
-[1]: https://app.snyk.io/login
-[2]: https://support.snyk.io/hc/en-us/articles/360004008258-Authenticate-the-CLI-with-your-account#UUID-4f46843c-174d-f448-cadf-893cfd7dd858_section-idm4557419555668831541902780562
-[3]: https://app.snyk.io/account
+[1]: https://www.terraform.io/docs/language/state/index.html
+[4]: https://app.terraform.io/signup/account
+[7]: https://learn.hashicorp.com/terraform/cloud-getting-started/signup#create-your-organization
+[8]: https://learn.hashicorp.com/terraform/cloud-getting-started/create-workspace
+[16]: https://www.terraform.io/docs/cloud/users-teams-organizations/users.html#user-settings
+[17]: https://www.terraform.io/docs/cloud/users-teams-organizations/users.html#api-tokens
+[18]: https://www.terraform.io/docs/cloud/workspaces/settings.html#execution-mode
