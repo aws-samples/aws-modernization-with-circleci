@@ -4,23 +4,29 @@ chapter: true
 weight: 20
 ---
 
-In the previous section, you forked the [example project repository][1] in GitHub and next you will learn how to add that project to CircleCI. 
+In the previous section, you forked the [example project repository][1] in GitHub and now you will learn how to add that project to CircleCI. 
 
 ## Step 1 &mdash; Adding the project to CircleCI
 
 1. Now go to your [CircleCI dashboard](https://circleci.com/vcs-authorize/). If you haven't signed up at this point, log in with your GitHub credentials.
-2. ![CircleCI Login](/images/circleci-signup.png) 
-3. On the left-hand side, click the Projects section and you will land here:
-4. ![CircleCI Projects Dashboard](/images/circleci-project-dashboard.png)
-5. Click **Set Up Project** next to the name of your new project.
-6. This opens the **New Project Set Up** page, select the **Skip this step** option.
-7. ![Skip Config](/images/skip-config.png)
+1. ![CircleCI Login](/images/circleci-signup.png) 
+1. On the left-hand side, click the Projects section and you will land here:
+1. ![CircleCI Projects Dashboard](/images/circleci-project-dashboard.png)
+1. Click **Set Up Project** next to the name of your new project.
+1. This opens the **New Project Set Up** page, select the **Skip this step** option.
+1. ![Skip Config](/images/skip-config.png)
+1. Click **Use Existing Config** button
+1. Click **Start Building** button
 
-<!-- Start added new content here Angel -->
+Congratulations! You have just triggered your first pipeline build on CircleCI. The example project has the default config.yml file with the default pipeline definition which will trigger the first build in your new project. In future modules, you will replace the entire contents of this file as you make progress in this workshop.
 
-## Step 1 &mdash; Configure project environment variables
+## Step 2 &mdash; Configure project environment variables
 
-On your CircleCI dashboard, navigate to `Project Settings > Environment Variables` in the CircleCI control panel and add these keys:
+Before you start building your pipeline, you must create project environment variables that will provide the integration access to the services you previously registered for. All of the Access and API tokens you previous generated will now be assigned to new project environment variables that will serve as values in your config syntax.
+
+Now you will create new project environment variables in CircleCI using the key and tokens you previously created.
+
+On your CircleCI dashboard, navigate to `Project Settings > Environment Variables` in the CircleCI control panel and add these keys and values in their respective fields:
 
 ```bash
 Name: AWS_ACCESS_KEY_ID 
@@ -28,30 +34,27 @@ Value: Your AWS IAM Accounts Access Key ID
 
 Name: AWS_SECRET_ACCESS_KEY 
 Value: Your AWS IAM Accounts Secret Access Key
+
+Name: DOCKER_LOGIN 
+Value: Your Docker Hub User login
+
+Name: DOCKER_PASSWORD
+Value: Your Docker Hub Access Token
+
+Name: SNYK_TOKEN 
+Value: Your Snyk Access Token
+
+Name:   TERRAFORM_TOKEN 
+Value: Your Terraform Cloud API Token
 ```
+
+After entering all of the environment variables listed above, your environment variables dialog should look similar to the image below.
 
 ![Add Env Variable](/images/add-env-var.png)
 
-You may be wondering where you're going to get this information! Earlier, you [created your AWS account](30_aws_setup_your_own.html). 
+Click the **X** in the top right corner to return to the pipeline dashboard.
 
-In your AWS Console, navigate to `IAM > User > your user > Security credentials tab`. 
-
-Your screen should look similar to this:
-
-![Access Keys](/images/iam-user-screen.png)
-
-Click the Create access key button
-
-{{% notice info %}}
-**Please store the secret access key**, once you click out of the box, that key will **NO LONGER** be accessible. You will have to delete that access key pair and generate new ones.
-{{% /notice %}}
-
-After generating the access keys, your dashboard should look something like this:
-![Create Access Key](/images/access-key.png)
-
-{{% notice warning %}}
-These access keys are part of an IAM User that has **administrative privileges**, do not share these with anyone, or they will have access your AWS account with admin privileges.
-{{% /notice %}}
+Your project is now setup in CircleCI and now you can start building a new pipeline for your project.
 
 <!-- URL Links index -->
 [1]: https://github.com/aws-samples/aws-modernization-with-circleci
