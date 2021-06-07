@@ -6,21 +6,21 @@ weight: 12
 
 ## Snyk
 
-[Snyk][1] is an open source security platform designed to help software-driven businesses enhance developer security. Snyk's dependency scanner makes it the only solution that seamlessly and proactively finds, prioritizes and fixes vulnerabilities and license violations in open source dependencies and container images.
+[Snyk][1] is an open source security platform designed to help software-driven businesses enhance developer security. Snyk's dependency scanner makes it the only solution that seamlessly and proactively finds, prioritizes, and fixes vulnerabilities and license violations in open source dependencies and container images.
 
 ## Create Snyk Access Token
 
 1. Visit your [Snyk account (Account Settings > API Token section)][3]
-1. In the KEY field, click **click to show**, then select and copy your API token from the field.
-1. Paste the token that appears on the screen in a safe location for use in future modules.
+1. In the KEY field, select **click to show**, then select and copy your API token from the field
+1. Paste the token that appears on the screen in a safe location for use in future modules
 
 {{% notice warning %}}
 Your Snyk access token must be protected and not shared with unauthorized parties to prevent exposure and unauthorized access.
 {{% /notice %}}
 
-You can read more about [Snyk Access Token from their docs here][2]
+You can read more about [Snyk Access Token from their docs here][2].
 
-Great, you have created and safely stored your newly created Snyk Access Token, Now, let's create the Terraform Cloud Access Token.
+Great, you have created and safely stored your newly created Snyk access token, Now, let's create the Terraform Cloud access token.
 
 <!-- URL Links index -->
 [1]: https://app.snyk.io/login

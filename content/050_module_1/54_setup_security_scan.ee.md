@@ -1,1 +1,0 @@
-54_setup_security_scan.md
