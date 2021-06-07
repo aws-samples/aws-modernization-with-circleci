@@ -17,9 +17,18 @@ The world’s best software teams use CircleCI to deliver quality code with conf
 ### Learning Objectives
 
 - Deploy Cloud9 as an IDE for completing workshop exercises.
-- Implement test-driven development and continuous delivery
-- Automate testing through a pipeline
-- Automate Elastic Beanstalk
+- Setting up project repositories in CircleCI
+- Creating CI/CD pipelines and segments for:
+    - Automated testing
+    - Security scans (DevSecOps)
+    - Building Docker images
+    - Infrastructure as Code (IaC) using Terraform
+    - Deploy applications
+- Integrating the following services in CI/CD pipelines:
+    - Snyk: app and container image scanning
+    - Docker Hub: push Docker image to public repository
+    - Terraform: codify and provision AWS resources and infrastructure 
+    - Terraform Cloud: centrally manage state of provisioned infrastructure
 
 {{% notice warning %}}
 <p style='text-align: left;'>

@@ -7,19 +7,27 @@ weight: 1
 # Learning Objectives
 Today we are going to learn the following topics:
 
-- Test driven development and continuous integration
-  - Docker Images
-  - FOSSA
-- Continuous delivery
-  - Automated deploy with CodeDeploy
-  - Automated deploy with AWS Elastic Beanstalk
+- Deploy Cloud9 as an IDE for completing workshop exercises.
+- Setting up project repositories in CircleCI
+- Creating CI/CD pipelines and segments for:
+    - Automated testing
+    - Security scans (DevSecOps)
+    - Building Docker images
+    - Infrastructure as Code (IaC) using Terraform
+    - Deploy applications
+- Integrating the following services in CI/CD pipelines:
+    - Snyk: app and container image scanning
+    - Docker Hub: push Docker image to public repository
+    - Terraform: codify and provision AWS resources and infrastructure 
+    - Terraform Cloud: centrally manage state of provisioned infrastructure
 
 # Workshop Structure
 
 This workshop is broken into the sections listed below.  Estimated time for completing the workshop is 1.5-2.5 hours.
 
-- **Prerequisites** ***(10 minutes)*** - Provision a Cloud9 instance and validate
-- **Setup** ***(20 minutes)*** - Install necessary tooling to complete the lab, including signing up for GitHub, DockerHub, and FOSSA
-- **Module 1: Test-Driven-Development and Continuous Deployment** ***(30 minutes)***
-- **Module 2: Automating Testing and Compliance** ***(30 minutes)***
-- **Module 3: Automating Elastic Beanstalk** ***(30 minutes)***
+- **Prerequisites** ***(15 minutes)*** - Provision a Cloud9 instance and validate
+- **Setting up CircleCI** ***(15 minutes)*** - collect access tokens from integrated services (AWS, GitHub, Terraform Cloud, Snyk, Docker Hub), fork the project repo and set it up in CircleCI.
+- **Module 1: Continuous Delivery** ***(30 minutes)***
+- **Module 2: DevSecOps** ***(30 minutes)***
+- **Module 3: Infrastructure as Code** ***(30 minutes)***
+- **Module 4: Continuous Deployments** ***(30 minutes)***

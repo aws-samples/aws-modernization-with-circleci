@@ -1,5 +1,5 @@
 ---
-title: "The Technical Challenge/Problem"
+title: "The Technical Challenge"
 chapter: true
 draft: false
 weight: 12
