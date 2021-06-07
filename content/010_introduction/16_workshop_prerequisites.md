@@ -25,5 +25,5 @@ There are a few prerequisite tasks you must perform before getting started on th
 [6]: https://aws.amazon.com/free/
 
 {{% notice info %}}
-Skip to the next section of you already have existing accounts for these services.
+Skip to the next section of you already have accounts for these services.
 {{% /notice %}}

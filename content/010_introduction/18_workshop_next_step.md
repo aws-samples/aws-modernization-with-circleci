@@ -6,14 +6,14 @@ weight: 18
 
 ## Workshop Overview
 
-This workshop will guide you through creating a robust CI/CD pipeline using CircleCI and in this section we'll discuss how the overall flow of this workshop in order to familiarize you with the process. 
+This workshop will guide you through creating a robust CI/CD pipeline using CircleCI. In this section we'll go through the overall flow to familiarize you with the scope of the workshop. 
 
 ### CircleCI config.yml file
-While working through the workshop modules, you will progressively build a CI/CD pipeline in the form of a CircleCI [config.yml][1] file. CircleCI believes in configuration as code. As a result, the entire delivery process from build to deploy is orchestrated through a single file called [config.yml][1]. The config.yml file is located in a folder called **.circleci/** at the top of your project. CircleCI uses the [YAML syntax][2] for defining pipeline configurations.
+While working through the workshop modules, you will progressively build a CI/CD pipeline in the form of a CircleCI [config.yml][1] file. CircleCI is a proponent of configuration as code. As a result, the entire delivery process from build to deploy is orchestrated through a single file called [config.yml][1]. The config.yml file is located in a folder called **.circleci/** at the top of your project. CircleCI uses the [YAML syntax][2] for defining pipeline configurations.
 
 ### Programming the config.yml
 
-As previously mentioned, you will progressively build a fully functional [config.yml][1] file that will ultimately demonstrate how to build, test, security scan and deploy code changes with every commit. We will provide all of the code snippets elements, with explanations, you will need to complete the config.yml file through the modules. The code snippets will look similar to this example:
+As previously mentioned, you will progressively build a fully functional [config.yml][1] file that will ultimately demonstrate how to build, test, security scan. and deploy code changes with every commit. We will provide all of the code snippet elements, with explanations, you will need to build the config.yml file through the modules. The code snippets will look similar to this example:
 
 {{<highlight yaml>}}
 # Use the latest 2.1 version of CircleCI pipeline process engine. See: https://circleci.com/docs/2.0/configuration-reference
