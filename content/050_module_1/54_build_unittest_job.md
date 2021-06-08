@@ -47,7 +47,7 @@ jobs:
 
 In above example, there is a job defined with the **run_test:** key which is essentially a label or name for this job and used as an identifier. When naming jobs try to use meaningful naming conventions that purposely  describe what they do for readability, maintainability and execution with in pipelines.
 
-**docker:** key represents the [executor][5] which will serve as the runtime in which related command will be executed for this particular job. In this case, the code will be executed on a [Docker executor][6] which is technically a Docker container, specified by the **- image: cimg/node:14.16.0** key.
+**docker:** key represents the [executor][7] which will serve as the runtime in which related command will be executed for this particular job. In this case, the code will be executed on a [Docker executor][8] which is technically a Docker container, specified by the **- image: cimg/node:14.16.0** key.
 
 **steps:** key represents a list of commands to execute related to this job. Every item in this list executes an action or command that accomplishes. This list has a few items, the **- checkout** command is an alias for git clone which gets the code for a specific commit.
 
@@ -116,3 +116,5 @@ Now that you've learned about continuous integration, CircleCI's config.yml and 
 [4]: https://circleci.com/docs/2.0/persist-data/#caching-strategies
 [5]: https://circleci.com/docs/2.0/configuration-reference/#storeartifacts
 [6]: https://circleci.com/docs/2.0/configuration-reference/#storetestresults
+[7]: https://circleci.com/docs/2.0/configuration-reference/#executors-requires-version-21
+[8]: https://circleci.com/docs/2.0/configuration-reference/#docker-executor
