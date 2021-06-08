@@ -26,7 +26,7 @@ The world’s best software teams use CircleCI to deliver quality code with conf
     - Deploy applications
 - Integrating the following services in CI/CD pipelines:
     - Snyk: app and container image scanning
-    - Docker Hub: push Docker image to public repository
+    - AWS Public ECR: push Docker image to public AWS ECR repository
     - Terraform: codify and provision AWS resources and infrastructure 
     - Terraform Cloud: centrally manage state of provisioned infrastructure
 

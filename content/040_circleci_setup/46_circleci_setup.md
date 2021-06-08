@@ -35,12 +35,6 @@ Value: Your AWS IAM Accounts Access Key ID
 Name: AWS_SECRET_ACCESS_KEY 
 Value: Your AWS IAM Accounts Secret Access Key
 
-Name: DOCKER_LOGIN 
-Value: Your Docker Hub User login
-
-Name: DOCKER_PASSWORD
-Value: Your Docker Hub Access Token
-
 Name: SNYK_TOKEN 
 Value: Your Snyk Access Token
 
