@@ -91,6 +91,8 @@ You should already be familiar with the *docker:*, *step:s* and *checkout* job e
 - **docker push $ECR_PUBLIC_URI**
     - Executes the [Docker push][9] command which uploads the image to the AWS ECR.
 
+**- persist_to_workspace:** is a special key that represents a [CircleCI Workspace][13]. When a workspace is declared in a job, files and directories can be added to it. Each addition creates a new layer in the workspace filesystem. Downstream jobs can then use this workspace for their own needs or add more layers on top. Workspaces are not shared between pipeline runs. The only time a workspace can be accessed after the pipeline has run is when a workflow is rerun within the 15 day limit.
+
 Congratulations! You have created a new pipeline job that builds and pushes your Docker image to the AWs ECR.
 
 ## Summary
