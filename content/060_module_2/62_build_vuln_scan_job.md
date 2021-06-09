@@ -68,7 +68,7 @@ The run: block in this example executes an *npm install* command that installs t
 
 The **- snyk/scan** orb command has two parameters set to false. Setting the `fail-on-issues:` parameter to false keeps the pipeline moving, even if vulnerabilities are detected. In most cases this parameter should be set to *true* so that the pipeline <i>does</i> fail and the developer is alerted to the reported vulnerabilities. The `monitor-on-build:` parameter specifies whether this project will be continuously monitored for new vulnerabilities. After running this command, you can review what it finds by logging in to the Snyk dashboard and viewing your projects. Since this parameter is set to <i>false</i> for this module, the job will not be updated in the Snyk dashboard.
 
-### Section summary
+### Module summary
 
 In this section you learned about DevSecOps and how it relates to CI/CD, along with how to implement automated security scans within your pipeline. 
 

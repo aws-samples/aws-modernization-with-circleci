@@ -95,9 +95,112 @@ You should already be familiar with the *docker:*, *step:s* and *checkout* job e
 
 Congratulations! You have created a new pipeline job that builds and pushes your Docker image to the AWs ECR.
 
-## Summary
+## Module Summary
 
 In this module you learned about Infrastructure as Code concepts and Hashicorp Terraform. You also learned how to create pipeline jobs that builds and AWS ECR and executes essential docker commands to build a Docker image and push it to the respective AWS ECR.
+
+At the end of this section your config.yml should be identical to this code snippet:
+
+{{<highlight yaml>}}
+version: 2.1
+orbs:
+  snyk: snyk/snyk@0.1.0
+  aws-cli: circleci/aws-cli@2.0.2
+  node: circleci/node@4.2.0
+  terraform: circleci/terraform@2.0.0  
+jobs:
+  run_tests:
+    docker:
+      - image: cimg/node:14.16.0
+    steps:
+      - checkout
+      - node/install-packages:
+          override-ci-command: npm install
+          cache-path: ~/project/node_modules
+      - run:
+          name: Run Unit Tests
+          command: |
+            ./node_modules/mocha/bin/mocha test/ --reporter mocha-junit-reporter --reporter-options mochaFile=./test/test-results.xml
+            ./node_modules/mocha/bin/mocha test/ --reporter mochawesome --reporter-options reportDir=test-results,reportFilename=test-results
+      - store_test_results:
+          path: test/
+      - store_artifacts:
+          path: test-results          
+  scan_app:
+    docker:
+      - image: cimg/node:14.16.0
+    steps:
+      - checkout
+      - run:
+          name: Snyk Scan Application files 
+          command: npm install 
+      - snyk/scan:
+          fail-on-issues: false
+          monitor-on-build: false
+  create_ecr_repo:
+    docker:
+      - image: cimg/node:14.16.0
+    steps:
+      - checkout
+      - run:
+          name: Create .terraformrc file locally
+          command: echo "credentials \"app.terraform.io\" {token = \"$TERRAFORM_TOKEN\"}" > $HOME/.terraformrc
+      - terraform/install:
+          terraform_version: "0.14.10"
+          arch: "amd64"
+          os: "linux"
+      - run:
+          name: Create ECR Repo
+          command: echo 'Create AWS ECR Repo with Terraform'
+      - terraform/init:
+          path: ./terraform/ecr
+      - terraform/apply:
+          path: ./terraform/ecr
+      - run: 
+          name: "Retrieve ECR URIs"
+          command: |
+            cd ./terraform/ecr
+            mkdir -p /tmp/ecr/
+            terraform init
+            echo 'export ECR_NAME='$(terraform output ECR_NAME) >> /tmp/ecr/ecr_envars
+            export ECR_PUBLIC_URI=$(terraform output ECR_URI)
+            echo 'export ECR_PUBLIC_URI='$ECR_PUBLIC_URI >> /tmp/ecr/ecr_envars
+            echo 'export ECR_URL='$(echo ${ECR_PUBLIC_URI:1:-1} | cut -d"/" -f1,2) >> /tmp/ecr/ecr_envars
+      - persist_to_workspace:
+          root: /tmp/ecr/
+          paths:
+            - "*"
+  build_push_docker_image:
+    docker:
+      - image: cimg/node:14.16.0
+    steps:
+      - checkout
+      - setup_remote_docker
+      - attach_workspace:
+          at: /tmp/ecr/      
+      - aws-cli/install
+      - aws-cli/setup:
+          aws-access-key-id: AWS_ACCESS_KEY_ID
+          aws-secret-access-key: AWS_SECRET_ACCESS_KEY
+      - run:
+          name: Build Docker image
+          command: |
+            export TAG=0.1.<< pipeline.number >>
+            echo 'export TAG='$TAG >> /tmp/ecr/ecr_envars
+            source /tmp/ecr/ecr_envars
+            docker build -t $ECR_PUBLIC_URI -t $ECR_PUBLIC_URI:$TAG .
+      - run:
+          name: Push to AWS ECR Public
+          command: |
+            source /tmp/ecr/ecr_envars
+            aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin $ECR_URL
+            docker push $ECR_PUBLIC_URI
+      - persist_to_workspace:
+          root: /tmp/ecr/
+          paths:
+            - "*"
+
+{{</highlight>}}
 
 You have completed this module, Now jump over to the next module **Continuos Deployment**, where you will learn how to:
 
