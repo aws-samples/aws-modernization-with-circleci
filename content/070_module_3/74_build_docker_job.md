@@ -202,6 +202,42 @@ jobs:
 
 {{</highlight>}}
 
+You should already be familiar with the *docker:*, *step:s* and *checkout* job elements so we'll skip discussing them and focus on the remaining *- run:* elements in this job.
+
+**- setup_remote_docker** block creates [a remote Docker environment][1] configured to execute Docker commands. See [Running Docker Commands][2] for details. This essentially provides the Docker executor access to the Docker CLI which inturn, enables a Docker image build with a Docker container.
+
+**- attach_workspace:** block attaches the [CircleCI Workspace][3] that you created in the previous job. This command will provide the job access to the data saved earlier.
+
+**- aws-cli/install** leverages the [AWS CLI Orb][4] which provides the job access to the AWS CLI to execute AWS centric commands. 
+
+**- aws-cli/setup:** leverages the [AWS CLI Orb][4] and its *setup* command to initialize the AWS cli to access AWS services with the AWS credentials defined in the *$AWS_ACCESS_KEY_ID* and *$AWS_SECRET_ACCESS_KEY* project environment variables defined earlier.
+
+**- run: name: Build Docker image** block has multiple commands listed in the **command:** element and we'll address them individually.
+
+- **export TAG=0.1.<< pipeline.number >>**
+    - Create an environment variable that incorporates the CircleCI [pipeline.number values][5] which serves as SemVer values that associate this image with this pipeline.
+- **echo 'export TAG='$TAG >> /tmp/ecr/ecr_envars**
+    - Saves the *$TAG* variable to the */tmp/ecr/ecr_envars* file for future use.
+- **source /tmp/ecr/ecr_envars**
+    - [sources][6] the */tmp/ecr/ecr_envars* file which reads and executes commands from the file specified as its argument in the current shell environment.
+- **docker build -t $ECR_PUBLIC_URI -t $ECR_PUBLIC_URI:$TAG .**
+    - [Builds and tags][7] the Docker image to push to the AWS ECR. The image build will be conducted according to the projects existing [Dockerfile][8] in the root of the repo.
+
+**- run: name: Push to AWS ECR Public** block has multiple commands listed in the **command:** element and we'll address them individually
+
+- **source /tmp/ecr/ecr_envars**
+    - [sources][6] the */tmp/ecr/ecr_envars* file which reads and executes commands from the file specified as its argument in the current shell environment.
+- **aws ecr-public get-login-password --region us-east-1 | docker login ---username AWS --password-stdin $ECR_URL**
+    - Executes the login commands from the AWS CLI that authorizes and grants the job access to the AWS ECR.
+- **docker push $ECR_PUBLIC_URI**
+    - Executes the [Docker push][9] command which uploads the image to the AWS ECR.
+
+Congratulations! You have created a new pipeline job that builds and pushes your Docker image to the AWs ECR.
+
+## Summary
+
+In this module you learned about Infrastructure as Code concepts and Hashicorp Terraform. You also learned how to create pipeline jobs that builds and AWS ECR and executes essential docker commands to build a Docker image and push it to the respective AWS ECR.
+
 You have completed this module, Now jump over to the next module **Continuos Deployment**, where you will learn how to:
 
 - Create AWS App Runner infrastructure
