@@ -61,7 +61,7 @@ Copy the snippet below and append it to the bottom of your config.yml file:
 
 {{</highlight>}}
 
-You should already be familiar with the *docker:*, *step:s* and *checkout* job elements so we'll skip discussing them and focus on the remaining *- run:* elements in this job.
+You should already be familiar with the *docker:*, *steps:* and *checkout* job elements so we'll skip discussing them and focus on the remaining *- run:* elements in this job.
 
 **- setup_remote_docker** block creates [a remote Docker environment][1] configured to execute Docker commands. See [Running Docker Commands][2] for details. This essentially provides the Docker executor access to the Docker CLI which inturn, enables a Docker image build with a Docker container.
 

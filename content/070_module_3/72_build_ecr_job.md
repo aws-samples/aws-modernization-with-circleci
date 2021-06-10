@@ -106,7 +106,7 @@ You should already be familiar with the *docker:*, *step:s* and *checkout* job e
 
 **- terraform/init:** block leverages the [Terraform Orb][9] to perform a [terraform init][10] command, which initializes the project in the *terraform/ecr/* directory.
 
-**- terraform/apply:** block block leverages the [Terraform Orb][9] to perform a [terraform apply][11] command, which executes the code in the *terraform/ecr/* directory.
+**- terraform/apply:** block leverages the [Terraform Orb][9] to perform a [terraform apply][11] command, which executes the code in the *terraform/ecr/* directory.
 
 **- run: name: "Retrieve ECR URIs"** block has multiple commands listed in the **command:** block and we'll address them individually:
 
@@ -121,9 +121,9 @@ You should already be familiar with the *docker:*, *step:s* and *checkout* job e
 - **export ECR_PUBLIC_URI=$(terraform output ECR_URI)**
     - Use the *$(terraform output ECR_URI)* command to create a local variable and assign the  ECR URI value.
 - **echo 'export ECR_PUBLIC_URI='$ECR_PUBLIC_URI >> /tmp/ecr/ecr_envars**
-    - Save the assigned *$ECR_PUBLIC_URI* value to the */tmp/ecr/ecr_envars* file 
+    - Saves the assigned *$ECR_PUBLIC_URI* value to the */tmp/ecr/ecr_envars* file 
 - **echo 'export ECR_URL='$(echo ${ECR_PUBLIC_URI:1:-1} | cut -d"/" -f1,2) >> /tmp/ecr/ecr_envars**
-    - Save a parsed version of the *$ECR_PUBLIC_URI* to the */tmp/ecr/ecr_envars* file
+    - Saves a parsed version of the *$ECR_PUBLIC_URI* to the */tmp/ecr/ecr_envars* file
 
 These commands essentially saves data to a file, and that data will be used in subsequent pipeline jobs. 
 
