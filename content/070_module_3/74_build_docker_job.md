@@ -61,6 +61,147 @@ Copy the snippet below and append it to the bottom of your config.yml file:
 
 {{</highlight>}}
 
+You should already be familiar with the *docker:*, *steps:* and *checkout* job elements so we'll skip discussing them and focus on the remaining *- run:* elements in this job.
+
+**- setup_remote_docker** block creates [a remote Docker environment][1] configured to execute Docker commands. See [Running Docker Commands][2] for details. This essentially provides the Docker executor access to the Docker CLI which inturn, enables a Docker image build with a Docker container.
+
+**- attach_workspace:** block attaches the [CircleCI Workspace][3] that you created in the previous job. This command will provide the job access to the data saved earlier.
+
+**- aws-cli/install** leverages the [AWS CLI Orb][4] which provides the job access to the AWS CLI to execute AWS centric commands. 
+
+**- aws-cli/setup:** leverages the [AWS CLI Orb][4] and its *setup* command to initialize the AWS cli to access AWS services with the AWS credentials defined in the *$AWS_ACCESS_KEY_ID* and *$AWS_SECRET_ACCESS_KEY* project environment variables defined earlier.
+
+**- run: name: Build Docker image** block has multiple commands listed in the **command:** element and we'll address them individually.
+
+- **export TAG=0.1.<< pipeline.number >>**
+    - Create an environment variable that incorporates the CircleCI [pipeline.number values][5] which serves as SemVer values that associate this image with this pipeline.
+- **echo 'export TAG='$TAG >> /tmp/ecr/ecr_envars**
+    - Saves the *$TAG* variable to the */tmp/ecr/ecr_envars* file for future use.
+- **source /tmp/ecr/ecr_envars**
+    - [sources][6] the */tmp/ecr/ecr_envars* file which reads and executes commands from the file specified as its argument in the current shell environment.
+- **docker build -t $ECR_PUBLIC_URI -t $ECR_PUBLIC_URI:$TAG .**
+    - [Builds and tags][7] the Docker image to push to the AWS ECR. The image build will be conducted according to the projects existing [Dockerfile][8] in the root of the repo.
+
+**- run: name: Push to AWS ECR Public** block has multiple commands listed in the **command:** element and we'll address them individually
+
+- **source /tmp/ecr/ecr_envars**
+    - [sources][6] the */tmp/ecr/ecr_envars* file which reads and executes commands from the file specified as its argument in the current shell environment.
+- **aws ecr-public get-login-password --region us-east-1 | docker login ---username AWS --password-stdin $ECR_URL**
+    - Executes the login commands from the AWS CLI that authorizes and grants the job access to the AWS ECR.
+- **docker push $ECR_PUBLIC_URI**
+    - Executes the [Docker push][9] command which uploads the image to the AWS ECR.
+
+**- persist_to_workspace:** is a special key that represents a [CircleCI Workspace][13]. When a workspace is declared in a job, files and directories can be added to it. Each addition creates a new layer in the workspace filesystem. Downstream jobs can then use this workspace for their own needs or add more layers on top. Workspaces are not shared between pipeline runs. The only time a workspace can be accessed after the pipeline has run is when a workflow is rerun within the 15 day limit.
+
+Congratulations! You have created a new pipeline job that builds and pushes your Docker image to the AWs ECR.
+
+## Module Summary
+
+In this module you learned about Infrastructure as Code concepts and Hashicorp Terraform. You also learned how to create pipeline jobs that builds and AWS ECR and executes essential docker commands to build a Docker image and push it to the respective AWS ECR.
+
+At the end of this section your config.yml should be identical to this code snippet:
+
+{{<highlight yaml>}}
+version: 2.1
+orbs:
+  snyk: snyk/snyk@0.1.0
+  aws-cli: circleci/aws-cli@2.0.2
+  node: circleci/node@4.2.0
+  terraform: circleci/terraform@2.0.0  
+jobs:
+  run_tests:
+    docker:
+      - image: cimg/node:14.16.0
+    steps:
+      - checkout
+      - node/install-packages:
+          override-ci-command: npm install
+          cache-path: ~/project/node_modules
+      - run:
+          name: Run Unit Tests
+          command: |
+            ./node_modules/mocha/bin/mocha test/ --reporter mocha-junit-reporter --reporter-options mochaFile=./test/test-results.xml
+            ./node_modules/mocha/bin/mocha test/ --reporter mochawesome --reporter-options reportDir=test-results,reportFilename=test-results
+      - store_test_results:
+          path: test/
+      - store_artifacts:
+          path: test-results          
+  scan_app:
+    docker:
+      - image: cimg/node:14.16.0
+    steps:
+      - checkout
+      - run:
+          name: Snyk Scan Application files 
+          command: npm install 
+      - snyk/scan:
+          fail-on-issues: false
+          monitor-on-build: false
+  create_ecr_repo:
+    docker:
+      - image: cimg/node:14.16.0
+    steps:
+      - checkout
+      - run:
+          name: Create .terraformrc file locally
+          command: echo "credentials \"app.terraform.io\" {token = \"$TERRAFORM_TOKEN\"}" > $HOME/.terraformrc
+      - terraform/install:
+          terraform_version: "0.14.10"
+          arch: "amd64"
+          os: "linux"
+      - run:
+          name: Create ECR Repo
+          command: echo 'Create AWS ECR Repo with Terraform'
+      - terraform/init:
+          path: ./terraform/ecr
+      - terraform/apply:
+          path: ./terraform/ecr
+      - run: 
+          name: "Retrieve ECR URIs"
+          command: |
+            cd ./terraform/ecr
+            mkdir -p /tmp/ecr/
+            terraform init
+            echo 'export ECR_NAME='$(terraform output ECR_NAME) >> /tmp/ecr/ecr_envars
+            export ECR_PUBLIC_URI=$(terraform output ECR_URI)
+            echo 'export ECR_PUBLIC_URI='$ECR_PUBLIC_URI >> /tmp/ecr/ecr_envars
+            echo 'export ECR_URL='$(echo ${ECR_PUBLIC_URI:1:-1} | cut -d"/" -f1,2) >> /tmp/ecr/ecr_envars
+      - persist_to_workspace:
+          root: /tmp/ecr/
+          paths:
+            - "*"
+  build_push_docker_image:
+    docker:
+      - image: cimg/node:14.16.0
+    steps:
+      - checkout
+      - setup_remote_docker
+      - attach_workspace:
+          at: /tmp/ecr/      
+      - aws-cli/install
+      - aws-cli/setup:
+          aws-access-key-id: AWS_ACCESS_KEY_ID
+          aws-secret-access-key: AWS_SECRET_ACCESS_KEY
+      - run:
+          name: Build Docker image
+          command: |
+            export TAG=0.1.<< pipeline.number >>
+            echo 'export TAG='$TAG >> /tmp/ecr/ecr_envars
+            source /tmp/ecr/ecr_envars
+            docker build -t $ECR_PUBLIC_URI -t $ECR_PUBLIC_URI:$TAG .
+      - run:
+          name: Push to AWS ECR Public
+          command: |
+            source /tmp/ecr/ecr_envars
+            aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin $ECR_URL
+            docker push $ECR_PUBLIC_URI
+      - persist_to_workspace:
+          root: /tmp/ecr/
+          paths:
+            - "*"
+
+{{</highlight>}}
+
 You should already be familiar with the *docker:*, *step:s* and *checkout* job elements so we'll skip discussing them and focus on the remaining *- run:* elements in this job.
 
 **- setup_remote_docker** block creates [a remote Docker environment][1] configured to execute Docker commands. See [Running Docker Commands][2] for details. This essentially provides the Docker executor access to the Docker CLI which inturn, enables a Docker image build with a Docker container.
