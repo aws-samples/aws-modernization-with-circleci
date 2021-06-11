@@ -4,7 +4,7 @@ chapter: true
 weight: 11
 ---
 ## Signing up for CircleCI via AWS Marketplace
-1. Click this [CircleCI Marketplace Link](https://aws.amazon.com/marketplace/pp/prodview-2dxubvgcym5rw)
+1. Click this [CircleCI Marketplace Link](https://aws.amazon.com/marketplace/pp/B08NFB2K88?&trk=el_a134p000003yrYeAAI&trkCampaign=AWSMP_pdp_dev_x_dg&sc_channel=el&sc_campaign=el_awsmp_mult&sc_outcome=Marketplace)
 1. You'll land here ![CircleCI Marketplace](/images/cci-mp-page.png)
 1. Click the **Try for free** button on the top right-hand corner.
 1. You may be prompted to sign in to the AWS account you just created, or the one you will be using for this workshop: ![AWS Signup](/images/aws-signin.png)
