@@ -1,5 +1,5 @@
 ---
-title: "4. Create an IAM role for your workspace"
+title: "5. Create an IAM role for your workspace"
 chapter: false
 weight: 15
 ---

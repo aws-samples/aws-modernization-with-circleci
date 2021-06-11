@@ -1,5 +1,5 @@
 ---
-title: "1.4 AWS: Create Access Keys"
+title: "1.3 AWS: Create Access Keys"
 chapter: true
 weight: 16
 ---

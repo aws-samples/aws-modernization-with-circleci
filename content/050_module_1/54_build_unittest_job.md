@@ -72,7 +72,7 @@ Now your ready to add a **run:** block that will specify commands that will exec
 
 The above example demonstrates a run block and its properties **name:** and **commands:** which specifies a name identifier and list of commands to execute respectively. The text in the **command:** key executes the unit-test script and saves the results to files, which are then saved or pinned to the pipeline, using the [- store_test_results: ][6] and [- store_artifacts:][5] keys. Pinning test results to pipelines are great for debugging and auditing purposes.  The above code snippet represents a run: block that executes a unit test on the code when it changes. So when a developer commits code and pushes those changes to the upstream repo, CircleCI will detect those changes in the push and trigger execution of the directives defined in the config.yml file. In this case, executing a test, generating test results in the form of files and saving or pinning those results to the pipeline build for auditing purposes. They are very helpful when having to research build and deployment issues as well as serving and audit artifacts if needed.
 
-### Section summary
+### Module summary
 
 In this section you learned the importance of testing code and gained some familiarity with the config.yml file along with its elements. You also started building a new CI/CD for the example project you'll be using in this workshop, so congratulations on building your first CI/CD pipeline on CircleCI.
 

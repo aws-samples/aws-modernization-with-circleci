@@ -1,5 +1,5 @@
 ---
-title: "5. Attach IAM Role"
+title: "6. Attach IAM Role"
 chapter: true
 weight: 16
 ---
