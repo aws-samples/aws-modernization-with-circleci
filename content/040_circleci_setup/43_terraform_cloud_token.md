@@ -1,5 +1,5 @@
 ---
-title: "1.3 Terraform Cloud: Create API Token"
+title: "1.2 Terraform Cloud: Create API Token"
 chapter: true
 weight: 14
 ---

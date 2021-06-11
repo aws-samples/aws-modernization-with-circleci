@@ -1,5 +1,5 @@
 ---
-title: "1.5 GitHub: Fork Example Project"
+title: "1.4 GitHub: Fork Example Project"
 chapter: true
 weight: 18
 ---
