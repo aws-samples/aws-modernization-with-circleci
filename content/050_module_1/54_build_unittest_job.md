@@ -110,7 +110,7 @@ Now that you've learned about continuous integration, CircleCI's config.yml and 
 
 
 <!-- URL Links index -->
-[1]: https://github.com/aws-samples/aws-modernization-with-circleci
+[1]: https://github.com/CircleCI-Public/aws-circleci-modernization-workshop-code
 [2]: https://circleci.com/docs/2.0/orb-intro/
 [3]: https://circleci.com/developer/orbs
 [4]: https://circleci.com/docs/2.0/persist-data/#caching-strategies

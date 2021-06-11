@@ -51,6 +51,6 @@ Click the **X** in the top right corner to return to the pipeline dashboard.
 Your project is now set up in CircleCI and you can start building a new pipeline for your project.
 
 <!-- URL Links index -->
-[1]: https://github.com/aws-samples/aws-modernization-with-circleci
+[1]: https://github.com/CircleCI-Public/aws-circleci-modernization-workshop-code
 [2]: https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh
 [3]: https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account
