@@ -129,6 +129,44 @@ These commands essentially saves data to a file, and that data will be used in s
 
 **- persist_to_workspace:** is a special key that represents a [CircleCI Workspace][13]. When a workspace is declared in a job, files and directories can be added to it. Each addition creates a new layer in the workspace filesystem. Downstream jobs can then use this workspace for their own needs or add more layers on top. Workspaces are not shared between pipeline runs. The only time a workspace can be accessed after the pipeline has run is when a workflow is rerun within the 15 day limit.
 
+## Update Terraform with your Terraform Cloud Organization
+
+Your Terraform Cloud organization needs to be specified in the project's Terraform code for both the ECR and APP Runner resources.
+
+### Update the ECR Terraform Code
+
+Open the **main.tf** file in *terraform/ecr/* directory and enter the Terraform Organization name you created earlier then save the file.
+
+{{<highlight yaml>}}
+terraform {
+  backend "remote" {
+    organization = "<Enter the Terraform Cloud Organization Name here>" # Enter the Terraform Cloud Organization Name here
+
+    workspaces {
+      name = "ecr-aws-circleci"
+    }
+  }
+}
+{{</highlight>}}
+
+### Update the App Runner Terraform Code
+
+Open the **main.tf** file in *terraform/app-runner/* directory and enter the Terraform Organization name you created earlier then save the file.
+
+{{<highlight yaml>}}
+terraform {
+  backend "remote" {
+    organization = "<Enter the Terraform Cloud Organization Name here>" # Enter the Terraform Cloud Organization Name here
+
+    workspaces {
+      name = "app-aws-circleci"
+    }
+  }
+}
+{{</highlight>}}
+
+**Note:** Specifying your Terraform Cloud Organization Name in these files is critical and will produce and error if not completed.
+
 Congratulations! You've just learned how to create a CI/CD pipeline job that leverages Terraform to create a new AWS Public ECR from within your pipeline.
 
 In the next section, you'll learn how to create a Docker image and upload it to your newly created ECR.
