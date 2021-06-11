@@ -54,6 +54,6 @@ git clone git@github.com:{YourGithubUserName}/aws-modernization-with-circleci.gi
 Now that you have created new SSH Keys, assigned them in GitHub, and forked over the project repo, you can start setting up this project repo in CircleCI.
 
 <!-- URL Links index -->
-[1]: https://github.com/aws-samples/aws-modernization-with-circleci
+[1]: https://github.com/CircleCI-Public/aws-circleci-modernization-workshop-code
 [2]: https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh
 [3]: https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account

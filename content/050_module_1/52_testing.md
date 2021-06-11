@@ -28,6 +28,6 @@ In the next section you will build a pipeline job that executes unit tests when 
 
 
 <!-- URL Links index -->
-[1]: https://github.com/aws-samples/aws-modernization-with-circleci
+[1]: https://github.com/CircleCI-Public/aws-circleci-modernization-workshop-code
 
 
