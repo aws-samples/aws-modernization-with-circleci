@@ -112,7 +112,7 @@ jobs:
           monitor-on-build: false
 {{</highlight>}}
 
-Using your new knowledge about continuous integration, CircleCI's config.yml, and implementing an app testing pipeline job, you are ready for the next section of the workshop. The next section covers DevSecOps and security concepts that developers can easily implement into their pipelines.
+Congratulations! You've learned about DevSecOps and how to implement security and vulnerability scans into your CI/CD pipelines and automate their execution to ensure your applications are as secure as possible.  In the next section, you will learn about Infrastructure as Code and how to build jobs that provision critical infrastructures and resources.
 
 <!-- URL Links index -->
 [1]: https://circleci.com/blog/devsecops-and-circleci-orbs-security-focused-ci-cd-best-practices/
