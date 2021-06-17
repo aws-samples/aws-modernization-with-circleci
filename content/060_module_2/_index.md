@@ -7,7 +7,7 @@ weight: 6
 
 # Introduction
 
-[DevSecOPs][1] is the philosophy of developing applications and infrastructure securely from ideation to deployment. It requires consideration of security risks at all stages of the development lifecycle. While DevOps teams have historically focused on automating the building, testing, and deployment of their applications, DevSecOps includes automating security practices to allow teams to increase security without losing velocity.
+[DevSecOps][1] is the philosophy of developing applications and infrastructure securely from ideation to deployment. It requires consideration of security risks at all stages of the development lifecycle. While DevOps teams have historically focused on automating the building, testing, and deployment of their applications, DevSecOps includes automating security practices to allow teams to increase security without losing velocity.
 
 To build, deploy, and test your application, your CI/CD pipelines access every resource in your technology stack. These resources include analytics keys, code signing credentials, secure secrets, proprietary code, and data. It is imperative that you secure your CI/CD pipeline so that you never expose protected information to unwanted parties. Without a deliberate effort to protect and secure your pipeline, any one of these resources is a potential security vulnerability.
 
