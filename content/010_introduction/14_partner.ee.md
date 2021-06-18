@@ -1,1 +1,1 @@
-14_partner.md
+./14_partner.md

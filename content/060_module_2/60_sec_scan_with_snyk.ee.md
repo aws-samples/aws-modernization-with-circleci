@@ -1,0 +1,1 @@
+./60_sec_scan_with_snyk.md

@@ -1,1 +1,1 @@
-12_problem_to_solve.md
+./12_problem_to_solve.md
