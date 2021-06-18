@@ -1,5 +1,5 @@
 ---
-title: "4. Configure workshop specific requirements"
+title: "3. Configure workshop specific requirements"
 chapter: true
 weight: 16
 ---
@@ -7,8 +7,7 @@ weight: 16
 ## Configure Workspace
 
 {{% notice info %}}
-Cloud9 normally manages IAM credentials dynamically. This isn't currently compatible with
-the EKS IAM authentication, so we will disable it and rely on the IAM role instead.
+Cloud9 normally manages IAM credentials dynamically.
 {{% /notice %}}
 
 1. Return to your workspace and click the gear icon (in top right corner), or click to open a new tab and choose "Open Preferences"
@@ -56,4 +55,4 @@ the EKS IAM authentication, so we will disable it and rely on the IAM role inste
    If the IAM role is not valid, <span style="color: red;">**DO NOT PROCEED**</span>. Go back and confirm the steps on this page.
    {{% /notice %}}
 
-If you have completed the above instructions, please  move to the Partner Setup section!
+If you have completed the above instructions, please  move to the CircleCI Setup section!
