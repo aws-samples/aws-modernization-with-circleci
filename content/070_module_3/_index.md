@@ -14,6 +14,7 @@ IaC configuration files contain infrastructure specifications, which makes it ea
 IaC can help your organization manage IT infrastructure needs while also improving consistency and reducing errors and manual configuration.
 
 Benefits of IaC:
+
 - Cost reduction
 - Reduce errors
 - Increase in speed of deployments
