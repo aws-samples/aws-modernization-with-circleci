@@ -7,7 +7,7 @@ weight: 8
 
 # Introduction
 
-During this workshop, we've covered many Continuos Delivery related concepts such as Continuous Integration, DevSecOps and Infrastructure as Code, and now we're going to briefly discuss [Continuous Deployments (CD)][1] the **"CD** in CI/CD.
+During this workshop, we've covered many Continuos Delivery related concepts such as Continuous Integration, DevSecOps and Infrastructure as Code, and now we're going to briefly discuss [Continuous Deployments (CD)][1] the **"CD"** in CI/CD.
 
 As Continuous Integration (CI) primarily focuses on software development practices, Continuous Deployment can be considered the practices that deliver or release the results of CI.
 
