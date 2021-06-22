@@ -12,15 +12,21 @@ Cloud9 normally manages IAM credentials dynamically.
 
 1. Return to your workspace and click the gear icon (in top right corner), or click to open a new tab and choose "Open Preferences"
 
-2. Select **AWS SETTINGS** and turn off **AWS managed temporary credentials**
+1. Select **AWS SETTINGS** and turn off **AWS managed temporary credentials**
 
-3. Close the Preferences tab
+1. Close the Preferences tab
    
     ![Turn off temp credentials](/images/setup/iamRoleWorkspace.gif)
 
-4. Copy and run (paste with **Ctrl+P** or **CMD+P**) the commands below.
+1. On the top left-hand side is another cog. Click the cog and click the **Show Hidden Files** option.
 
-      Before running it, review what it does by reading through the comments.
+   ![Show Hidden Files](/images/show_hidden_folders.png)
+
+1. Copy and run (paste with **Ctrl+P** or **CMD+P**) the commands below.
+
+
+
+   Before running it, review what it does by reading through the comments.
 
       ```sh
       # Update awscli
@@ -46,12 +52,9 @@ Cloud9 normally manages IAM credentials dynamically.
       # Set the ACCOUNT_ID and the region to work with our desired region
       export AWS_REGION=$(curl -s 169.254.169.254/latest/dynamic/instance-identity/document | jq -r '.region')
       test -n "$AWS_REGION" && echo AWS_REGION is "$AWS_REGION" || echo AWS_REGION is not set
-      
-      # Validate that our IAM role is valid.
-      aws sts get-caller-identity --query Arn | grep BastionRole -q && echo "IAM role valid" || echo "IAM role NOT valid"
       ```
 
-      {{% notice warning %}}
+   {{% notice warning %}}
    If the IAM role is not valid, <span style="color: red;">**DO NOT PROCEED**</span>. Go back and confirm the steps on this page.
    {{% /notice %}}
 

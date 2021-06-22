@@ -8,7 +8,7 @@ weight: 16
 
 Earlier, you [created your AWS account][1]. Now you must create [AWS access keys and secrets][2] that will enable you to access and interact with AWS programmatically, which is also essential for integrating AWS into your pipeline.
 
-In your AWS Console, navigate to **IAM > User > your user > Security credentials** tab`. 
+In your AWS Console, navigate to **`IAM > User > your user > Security credentials`** tab. 
 
 Your screen should look similar to this:
 
@@ -27,7 +27,7 @@ After generating the access keys, your dashboard should look something like this
 These access keys are part of an IAM User that has **administrative privileges**. Do not share these with anyone, or they will have access your AWS account with admin privileges.
 {{% /notice %}}
 
-You have created and safely stored your newly created AWS Access Keys and Secrets, Now, let's fork the GitHub example project repository for this workshop.
+You have created and safely stored your newly created AWS Access Keys and Secrets. Now, let's fork the GitHub example project repository for this workshop.
 
 <!-- URL Links index -->
 [1]: /030_self_guided_setup/30_aws_setup_your_own.html

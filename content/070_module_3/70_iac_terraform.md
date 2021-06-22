@@ -16,7 +16,7 @@ Terraform will be used in this workshop to provision and destroy all of the infr
 
 ## Terraform project code
 
-The [example project repo][] has a directory named `terraform/` that houses all of the IaC code for the project. Within this directory are two other directories:
+The [example project repo][] has a directory named `terraform/` that houses all the IaC code for the project. Within this directory are two other directories:
 
 - The `ecr/` directory contains the Terraform code for the [AWS Elastic Container Repository (ECR)][2] used in the pipeline.
 - The `app-runner` directory contains the Terraform code for the [AWS App Runner][3] infrastructure used in the pipeline. 
@@ -39,12 +39,12 @@ The Terraform Cloud credentials you created in the [CircleCI Setup section][6] w
 
 ## Example of ECR Terraform code
 
-There are two Terraform code instances in this project. We will briefly cover the Terraform AWS ECR provisioning code. These code instances already exist and you will not have to write any Terraform code. We will take this opportunity to familiarize you with the code that this project uses to create an new AWS Public ECR. You <i>do not</i> have to take any action with the example code snippet below:
+There are two Terraform code instances in this project. We will briefly cover the Terraform AWS ECR provisioning code. These code instances already exist, and you will not have to write any Terraform code. We will take this opportunity to familiarize you with the code that this project uses to create an new AWS Public ECR. **Make sure you update the organization name to what you named in your Terraform account!**
 
 {{<highlight terraform>}}
 terraform {
   backend "remote" {
-    organization = "datapunks"
+    organization = "yourOrgName"
 
     workspaces {
       name = "ecr-aws-circleci"

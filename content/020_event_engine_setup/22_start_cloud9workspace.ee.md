@@ -26,7 +26,7 @@ We will use Amazon Cloud9 to access our AWS accounts via the AWS CLI in this Wor
 
 1. For the name use `circleci-workshop`, then click **Next step**
 
-1. Select the default instance type **t3.micro**
+1. Select the default instance type **t2.micro**
 
 1. Leave all the other settings as default and click **Next step** followed by **Create environment**
 
@@ -51,5 +51,5 @@ If you don't like this dark theme, you can change it from the **View / Themes** 
 {{% /notice %}}
 
 {{% notice tip %}}
-Cloud9 requires third-party-cookies. You can whitelist the [specific domains](https://docs.aws.amazon.com/cloud9/latest/user-guide/troubleshooting.html#troubleshooting-env-loading).  You are having issues with this, Ad blockers, javascript disablers, and tracking blockers should be disabled for the cloud9 domain, or connecting to the workspace might be impacted.
+Cloud9 requires third-party-cookies. You can whitelist the [specific domains](https://docs.aws.amazon.com/cloud9/latest/user-guide/troubleshooting.html#troubleshooting-env-loading).  You are having issues with this, Ad blockers, javascript disabler, and tracking blockers should be disabled for the cloud9 domain, or connecting to the workspace might be impacted.
 {{% /notice %}}
