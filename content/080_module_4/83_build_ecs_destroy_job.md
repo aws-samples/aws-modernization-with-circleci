@@ -1,43 +1,42 @@
 ---
-title: "5.5 Build an AWS App Runner Destroy Job"
+title: "5.4 Build an ECS Destroy Job"
 chapter: true
 weight: 14
-hidden: true
 ---
 
-## Destroy AWS App Runner
+## Destroy Amazon ECS Cluster
 
 The previous pipeline jobs created infrastructures and resources that the pipeline required for execution. Now that all of the essential pipeline jobs have been defined, you need to define pipeline jobs that will decommission and destroy the resources created in previous jobs.
 
 Copy the snippet below and append it to the bottom of your config.yml file:
 
 {{<highlight yaml>}}
-  destroy_app_runner:
-    docker:
-      - image: cimg/node:14.16.0
+  destroy_aws_ecs:
+    machine:
+      image: ubuntu-2004:202101-01
+    resource_class: arm.medium
     steps:
       - checkout
-      - attach_workspace:
-          at: /tmp/ecr/
       - run:
           name: Create .terraformrc file locally
-          command: echo "credentials \"app.terraform.io\" {token = \"$TERRAFORM_TOKEN\"}" > $HOME/.terraformrc && cat $HOME/.terraformrc
+          command: echo "credentials \"app.terraform.io\" {token = \"$TERRAFORM_TOKEN\"}" > $HOME/.terraformrc
       - terraform/install:
-          terraform_version: "0.14.10"
-          arch: "amd64"
+          terraform_version: "1.0.2"
+          arch: "arm64"
+          os: "linux"
       - terraform/init:
-          path: ./terraform/app-runner/
+          path: ./terraform/ecs
+      - terraform/plan:
+          path: ./terraform/ecs
       - terraform/destroy:
-          path: ./terraform/app-runner/
+          path: ./terraform/ecs
 {{</highlight>}}
 
-You should already be familiar with the *docker:*, *step:s* and *checkout* job elements so we'll skip discussing them and focus on the remaining *- run:* elements in this job.
-
-**- attach_workspace:** block attaches the CircleCI Workspace that you created in the previous job. This command will provide the job access to the data saved earlier.
+You should already be familiar with the *machine:*, *steps:* and *checkout* job elements so we'll skip discussing them and focus on the remaining *- run:* elements in this job.
 
 **command: echo "credentials \"app.terraform.io\" {token = \"$TERRAFORM_TOKEN\"}" > $HOME/.terraformrc** creates a required file, that is used by the Terraform CLI to authenticate your Terraform Cloud credentials and grant access to interact with the service. Notice that the *$TERRAFORM_TOKEN* environment variable, that you created earlier, specified and represents a protected way of referencing sensitive data in the config.yml file. Using environment variables in this manner protects against exposing sensitive data in pipeline configurations.
 
-**- terraform/install:** block leverages the [Terraform Orb][9] to install the appropriate Terraform CLI binary into the executor. The cli will be required to execute Terraform code inthe pipeline.
+**- terraform/install:** block leverages the [Terraform Orb][9] to install the appropriate Terraform CLI binary into the executor. The cli will be required to execute Terraform code in the pipeline.
 
 **- terraform/init:** block leverages the [Terraform Orb][9] to perform a [terraform init][10] command, which initializes the project.
 
@@ -50,7 +49,7 @@ In the next section, you will learn about CircleCI Workflows.
 
 <!-- URL Links index -->
 [1]: https://www.terraform.io
-[2]: https://aws.amazon.com/ecr/
+[2]: https://aws.amazon.com/ecs/
 [3]: https://aws.amazon.com/apprunner/
 [4]: https://www.terraform.io/docs/cloud/
 [5]: https://www.terraform.io/docs/cli/index.html

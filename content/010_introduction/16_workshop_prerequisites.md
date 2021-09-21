@@ -9,6 +9,7 @@ weight: 16
 There are a few prerequisite tasks you must perform before getting started on this workshop. You will integrate various tools and services into a CI/CD pipeline which will require you to create or register new accounts with the following services:
 
 1. Create a [GitHub account][1]
+1. Create a [Docker Hub account][2]
 1. Create a [Snyk account][3]
 1. Create a [CircleCI account][4]
 1. Create a [Terraform Cloud account][5]

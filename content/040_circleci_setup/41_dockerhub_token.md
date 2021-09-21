@@ -1,8 +1,8 @@
 ---
 title: "1.1 Docker Hub: Create Docker Hub Access Token"
 chapter: true
-draft: true
-hidden: true
+draft: false
+hidden: false
 weight: 10
 ---
 

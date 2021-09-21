@@ -1,5 +1,5 @@
 ---
-title: "1.1 Snyk: Create Access Token"
+title: "1.2 Snyk: Create Access Token"
 chapter: true
 weight: 12
 ---

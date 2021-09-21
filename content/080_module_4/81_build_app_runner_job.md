@@ -2,6 +2,7 @@
 title: "5.2 Build an AWS App Runner Job"
 chapter: true
 weight: 11
+hidden: true
 ---
 
 ## Build App Runner job

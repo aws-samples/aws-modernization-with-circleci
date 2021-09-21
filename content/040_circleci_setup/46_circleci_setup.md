@@ -1,5 +1,5 @@
 ---
-title: "1.5 CircleCI: Setup Project"
+title: "1.6 CircleCI: Setup Project"
 chapter: true
 weight: 20
 ---
@@ -34,6 +34,12 @@ Value: Your AWS IAM Accounts Access Key ID
 
 Name: AWS_SECRET_ACCESS_KEY 
 Value: Your AWS IAM Accounts Secret Access Key
+
+Name: DOCKER_LOGIN 
+Value: Your Docker Hub user name
+
+Name: DOCKER_PASSWORD 
+Value: Your Docker Hub Access Token
 
 Name: SNYK_TOKEN 
 Value: Your Snyk Access Token

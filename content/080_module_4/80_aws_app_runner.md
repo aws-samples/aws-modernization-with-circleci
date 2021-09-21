@@ -2,6 +2,7 @@
 title: "5.1 AWS App Runner"
 chapter: true
 weight: 10
+hidden: true
 ---
 
 ## AWS App Runner

@@ -2,6 +2,7 @@
 title: "4.2 Build an AWS ECR Job using Terraform"
 chapter: true
 weight: 12
+hidden: true
 ---
 
 ## AWS Elastic Container Registry
