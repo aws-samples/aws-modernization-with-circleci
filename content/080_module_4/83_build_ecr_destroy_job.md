@@ -2,6 +2,7 @@
 title: "5.4 Build a ECR Destroy Job"
 chapter: true
 weight: 13
+hidden: true
 ---
 
 ## Build ECR Destroy job

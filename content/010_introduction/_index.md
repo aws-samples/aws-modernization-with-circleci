@@ -17,9 +17,12 @@ Today we are going to learn the following topics:
     - Deploy applications
 - Integrating the following services in CI/CD pipelines:
     - Snyk: app and container image scanning
-    - AWS Public ECR: push Docker image to public AWS ECR repository
-    - Terraform: codify and provision AWS resources and infrastructure 
+    - Docker Hub: build and push a Docker image to the registry
     - Terraform Cloud: centrally manage state of provisioned infrastructure
+    - Terraform: codify and provision AWS resources and infrastructure 
+    - AWS Elastic Container Service (ECS): Provision a new ECS cluster
+    - AWS Graviton EC2: Arm compute nodes
+
 
 # Workshop Structure
 

@@ -1,7 +1,7 @@
 ---
-title: "4.3 Build a Docker Image Job"
+title: "4.2 Build a Docker Image Job"
 chapter: true
-weight: 14
+weight: 12
 ---
 
 ## Docker Images and Containers
@@ -18,88 +18,19 @@ By default, a container is relatively well isolated from other containers and it
 
 A container is defined by its image as well as any configuration options you provide to it when you create or start it. When a container is removed, any changes to its state that are not stored in persistent storage disappear.
 
-In this workshop section, you will create a Docker image for the project application, so you will need to create a CI/CD job that builds an image and uploads/pushes it to the AWS Public ECR you created earlier.
+In this section, you will create a Docker image for the project application, so you will create a CI/CD job that builds an image and uploads/pushes it to the Docker Hub account you created earlier.
 
-## Docker Image build job
+## AWS Graviton EC2 (Arm) Compute Nodes
 
-In this section, you will learn how to create a Docker Image based on the project application. Then you will learn how to push it to an AWS ECR from within a CI/CD job.
+This project provisions an AWS ECS cluster that is powered by [AWS Gravition EC2 compute nodes][10] which are powered by [Arm based][1] processors. Arm based architectures are incompatible with [x86][11] architectures which means software and docker images must be compiled for the architectures that they're going to be deployed to. Since were deploying to an Arm architecture, we need to build our Docker image on an Arm based executor in our pipeline.
 
-The following code snippet shows how to define and provision a job that builds and pushes a Docker Image within your CI/Cd pipeline.
+CircleCI has [Arm based resources classes][12] that can be defined and implemented to code on Arm executors. This enables you to build Arm compatible artifacts such as the Docker image we'll deploy to an ECS cluster. In the sections below we will build a job that leverages CircleCI's Arm resource class executor to build an Arm compatible Docker image.
 
-Copy this code snippetand append it to the bottom of your config.yml file:
+## Pickup from previous module: DevSecOps
 
-{{<highlight yaml>}}
-  build_push_docker_image:
-    docker:
-      - image: cimg/node:14.16.0
-    steps:
-      - checkout
-      - setup_remote_docker
-      - attach_workspace:
-          at: /tmp/ecr/      
-      - aws-cli/install
-      - aws-cli/setup:
-          aws-access-key-id: AWS_ACCESS_KEY_ID
-          aws-secret-access-key: AWS_SECRET_ACCESS_KEY
-      - run:
-          name: Build Docker image
-          command: |
-            export TAG=0.1.<< pipeline.number >>
-            echo 'export TAG='$TAG >> /tmp/ecr/ecr_envars
-            source /tmp/ecr/ecr_envars
-            docker build -t $ECR_PUBLIC_URI -t $ECR_PUBLIC_URI:$TAG .
-      - run:
-          name: Push AWS ECR Public
-          command: |
-            source /tmp/ecr/ecr_envars
-            aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin $ECR_URL
-            docker push $ECR_PUBLIC_URI
-      - persist_to_workspace:
-          root: /tmp/ecr/
-          paths:
-            - "*"
+Using what you learned about CI/CD jobs in previous sections, you will create a new job that builds a [Docker image][2] and pushes it to [Docker Hub][10] from our pipeline.
 
-{{</highlight>}}
-
-You should already be familiar with the *docker:*, *steps:* and *checkout* job elements so we'll skip discussing them and focus on the remaining *- run:* elements in this job.
-
-**- setup_remote_docker** block creates [a remote Docker environment][1] configured to execute Docker commands. See [Running Docker Commands][2] for details. This essentially provides the Docker executor access to the Docker CLI which inturn, enables a Docker image build with a Docker container.
-
-**- attach_workspace:** block attaches the [CircleCI Workspace][3] that you created in the previous job. This command will provide the job access to the data saved earlier.
-
-**- aws-cli/install** leverages the [AWS CLI Orb][4] which provides the job access to the AWS CLI to execute AWS centric commands. 
-
-**- aws-cli/setup:** leverages the [AWS CLI Orb][4] and its *setup* command to initialize the AWS cli to access AWS services with the AWS credentials defined in the *$AWS_ACCESS_KEY_ID* and *$AWS_SECRET_ACCESS_KEY* project environment variables defined earlier.
-
-**- run: name: Build Docker image** block has multiple commands listed in the **command:** element and we'll address them individually.
-
-- **export TAG=0.1.<< pipeline.number >>**
-    - Create an environment variable that incorporates the CircleCI [pipeline.number values][5] which serves as SemVer values that associate this image with this pipeline.
-- **echo 'export TAG='$TAG >> /tmp/ecr/ecr_envars**
-    - Saves the *$TAG* variable to the */tmp/ecr/ecr_envars* file for future use.
-- **source /tmp/ecr/ecr_envars**
-    - [sources][6] the */tmp/ecr/ecr_envars* file which reads and executes commands from the file specified as its argument in the current shell environment.
-- **docker build -t $ECR_PUBLIC_URI -t $ECR_PUBLIC_URI:$TAG .**
-    - [Builds and tags][7] the Docker image to push to the AWS ECR. The image build will be conducted according to the projects existing [Dockerfile][8] in the root of the repo.
-
-**- run: name: Push to AWS ECR Public** block has multiple commands listed in the **command:** element and we'll address them individually
-
-- **source /tmp/ecr/ecr_envars**
-    - [sources][6] the */tmp/ecr/ecr_envars* file which reads and executes commands from the file specified as its argument in the current shell environment.
-- **aws ecr-public get-login-password --region us-east-1 | docker login ---username AWS --password-stdin $ECR_URL**
-    - Executes the login commands from the AWS CLI that authorizes and grants the job access to the AWS ECR.
-- **docker push $ECR_PUBLIC_URI**
-    - Executes the [Docker push][9] command which uploads the image to the AWS ECR.
-
-**- persist_to_workspace:** is a special key that represents a [CircleCI Workspace][13]. When a workspace is declared in a job, files and directories can be added to it. Each addition creates a new layer in the workspace filesystem. Downstream jobs can then use this workspace for their own needs or add more layers on top. Workspaces are not shared between pipeline runs. The only time a workspace can be accessed after the pipeline has run is when a workflow is rerun within the 15 day limit.
-
-Congratulations! You have created a new pipeline job that builds and pushes your Docker image to the AWs ECR.
-
-## Module Summary
-
-In this module you learned about Infrastructure as Code concepts and Hashicorp Terraform. You also learned how to create pipeline jobs that builds and AWS ECR and executes essential docker commands to build a Docker image and push it to the respective AWS ECR.
-
-At the end of this section your config.yml should be identical to this code snippet:
+To complete this module, your config.yml must be identical to the one at the end of the last module. If yours is different, that's ok! Just go ahead and copy this snippet and paste it into the file:
 
 {{<highlight yaml>}}
 version: 2.1
@@ -107,7 +38,8 @@ orbs:
   snyk: snyk/snyk@0.1.0
   aws-cli: circleci/aws-cli@2.0.2
   node: circleci/node@4.2.0
-  terraform: circleci/terraform@2.0.0  
+  docker: circleci/docker@1.5.0
+  terraform: circleci/terraform@3.0.0
 jobs:
   run_tests:
     docker:
@@ -137,116 +69,124 @@ jobs:
       - snyk/scan:
           fail-on-issues: false
           monitor-on-build: false
-  create_ecr_repo:
-    docker:
-      - image: cimg/node:14.16.0
-    steps:
-      - checkout
-      - run:
-          name: Create .terraformrc file locally
-          command: echo "credentials \"app.terraform.io\" {token = \"$TERRAFORM_TOKEN\"}" > $HOME/.terraformrc
-      - terraform/install:
-          terraform_version: "0.14.10"
-          arch: "amd64"
-          os: "linux"
-      - run:
-          name: Create ECR Repo
-          command: echo 'Create AWS ECR Repo with Terraform'
-      - terraform/init:
-          path: ./terraform/ecr
-      - terraform/apply:
-          path: ./terraform/ecr
-      - run: 
-          name: "Retrieve ECR URIs"
-          command: |
-            cd ./terraform/ecr
-            mkdir -p /tmp/ecr/
-            terraform init
-            echo 'export ECR_NAME='$(terraform output ECR_NAME) >> /tmp/ecr/ecr_envars
-            export ECR_PUBLIC_URI=$(terraform output ECR_URI)
-            echo 'export ECR_PUBLIC_URI='$ECR_PUBLIC_URI >> /tmp/ecr/ecr_envars
-            echo 'export ECR_URL='$(echo ${ECR_PUBLIC_URI:1:-1} | cut -d"/" -f1,2) >> /tmp/ecr/ecr_envars
-      - persist_to_workspace:
-          root: /tmp/ecr/
-          paths:
-            - "*"
-  build_push_docker_image:
-    docker:
-      - image: cimg/node:14.16.0
-    steps:
-      - checkout
-      - setup_remote_docker
-      - attach_workspace:
-          at: /tmp/ecr/      
-      - aws-cli/install
-      - aws-cli/setup:
-          aws-access-key-id: AWS_ACCESS_KEY_ID
-          aws-secret-access-key: AWS_SECRET_ACCESS_KEY
-      - run:
-          name: Build Docker image
-          command: |
-            export TAG=0.1.<< pipeline.number >>
-            echo 'export TAG='$TAG >> /tmp/ecr/ecr_envars
-            source /tmp/ecr/ecr_envars
-            docker build -t $ECR_PUBLIC_URI -t $ECR_PUBLIC_URI:$TAG .
-      - run:
-          name: Push to AWS ECR Public
-          command: |
-            source /tmp/ecr/ecr_envars
-            aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin $ECR_URL
-            docker push $ECR_PUBLIC_URI
-      - persist_to_workspace:
-          root: /tmp/ecr/
-          paths:
-            - "*"
-
 {{</highlight>}}
 
-You should already be familiar with the *docker:*, *step:s* and *checkout* job elements so we'll skip discussing them and focus on the remaining *- run:* elements in this job.
+## Docker Image build job
 
-The **- setup_remote_docker** block creates [a remote Docker environment][1] configured to execute Docker commands. See [Running Docker Commands][2] for details. This essentially provides the Docker executor access to the Docker CLI which in turn, enables a Docker image build with a Docker container.
+In this section, you will learn how to create a Docker Image based on the project application. Then you will learn how to push it [Docker Hub][10] from within a CI/CD job.
 
-The **- attach_workspace:** block attaches the [CircleCI Workspace][3] that you created in the previous job. This command will provide the job access to the data saved earlier.
+The following code snippet shows how to define and provision a job that builds and pushes an [Arm compatible][1] Docker Image within your CI/CD pipeline.
 
-**- aws-cli/install** uses the [AWS CLI orb][4] which provides the job access to the AWS CLI to execute AWS-centric commands. 
+Copy this code snippet and append it to the bottom of your config.yml file:
 
-**- aws-cli/setup:** uses the [AWS CLI orb][4] and its *setup* command to initialize the AWS CLI to access AWS services with the AWS credentials defined in the *$AWS_ACCESS_KEY_ID* and *$AWS_SECRET_ACCESS_KEY* project environment variables
+{{<highlight yaml>}}
+  build_docker_image:
+    machine:
+      image: ubuntu-2004:202101-01
+    resource_class: arm.medium
+    steps:
+      - checkout  
+      - docker/check
+      - docker/build:
+          image: $DOCKER_LOGIN/$CIRCLE_PROJECT_REPONAME
+          tag: 0.1.<< pipeline.number >>
+      - docker/push:
+          image: $DOCKER_LOGIN/$CIRCLE_PROJECT_REPONAME
+          tag: 0.1.<< pipeline.number >>
+{{</highlight>}}
 
-The **- run: name: Build Docker image** block has multiple commands listed in the **command:** element. I will address them individually:
+This `build_docker_image:` job demonstrates a few new elements that differ from jobs you previously built. You're already familiar with the *checkout* and *steps* commands so we'll explain the new bits in this job you're probably not familiar with.
 
-- **export TAG=0.1.<< pipeline.number >>**
-    - Create an environment variable that incorporates the CircleCI [pipeline.number values][5] that serves as SemVer values that associate this image with this pipeline.
-- **echo 'export TAG='$TAG >> /tmp/ecr/ecr_envars**
-    - Saves the *$TAG* variable to the */tmp/ecr/ecr_envars* file for future use.
-- **source /tmp/ecr/ecr_envars**
-    - [sources][6] the */tmp/ecr/ecr_envars* file which reads and executes commands from the file specified as its argument in the current shell environment.
-- **docker build -t $ECR_PUBLIC_URI -t $ECR_PUBLIC_URI:$TAG .**
-    - [Builds and tags][7] the Docker image to push to the AWS ECR. The image build will be conducted according to the projects existing [Dockerfile][8] in the root of the repo.
+**machine:** represents the CircleCI [machine executor][12] which executes jobs in a dedicated, ephemeral Virtual Machine.
 
-The **- run: name: Push to AWS ECR Public** block has multiple commands listed in the **command:** element. I will address them individually:
+**image:** specify an operating system image for the executor from [this list][14]. In this example we're using *ubuntu-2004:202101-01*
 
-- **source /tmp/ecr/ecr_envars**
-    - [sources][6] the */tmp/ecr/ecr_envars* file which reads and executes commands from the file specified as its argument in the current shell environment.
-- **aws ecr-public get-login-password --region us-east-1 | docker login ---username AWS --password-stdin $ECR_URL**
-    - Executes the log-in commands from the AWS CLI that authorize and grant the job access to the AWS ECR.
-- **docker push $ECR_PUBLIC_URI**
-    - Executes the [Docker push][9] command, which uploads the image to the AWS ECR.
+**resource_class:** enables you to configure CPU and RAM resources for each job. In this case we're specifying an **arm.medium** resource class which will provide an Arm powered executor to execute the pipeline on. 
 
-Congratulations! You have created a new pipeline job that builds and pushes your Docker image to the AWs ECR.
+**docker/check** this is a Docker orb command that validates the Docker client is installed on the executor.
+
+**docker/build:** Docker orb command that executes the [Docker build][7] command
+
+**image:** species the name of the Docker image to build. In this example, the image name is defined by the *$DOCKER_LOGIN* environment variable you created earlier and the native *$CIRCLE_PROJECT_REPONAME* environment variable supplied by the platform.
+
+**tag:** specifies the Docker image tag. In this example, the *<< pipeline.number >>* adds a reference to the pipeline that executed the image build.
+
+**docker/push:** Docker orb command that executes the [Docker push][9] command
+
+**image:** species the name of the Docker image to push to Docker Hub.
+
+**tag:** specifies the Docker image tag to push to Docker Hub.
+
+
+Congratulations! You have created a new pipeline job that builds an Arm compatible Docker image and pushed it to Docker Hub.
+
+At the end of this section your config.yml should be identical to this code snippet:
+
+{{<highlight yaml>}}
+version: 2.1
+orbs:
+  snyk: snyk/snyk@0.1.0
+  aws-cli: circleci/aws-cli@2.0.2
+  node: circleci/node@4.2.0
+  docker: circleci/docker@1.5.0
+  terraform: circleci/terraform@3.0.0
+jobs:
+  run_tests:
+    docker:
+      - image: cimg/node:14.16.0
+    steps:
+      - checkout
+      - node/install-packages:
+          override-ci-command: npm install
+          cache-path: ~/project/node_modules
+      - run:
+          name: Run Unit Tests
+          command: |
+            ./node_modules/mocha/bin/mocha test/ --reporter mocha-junit-reporter --reporter-options mochaFile=./test/test-results.xml
+            ./node_modules/mocha/bin/mocha test/ --reporter mochawesome --reporter-options reportDir=test-results,reportFilename=test-results
+      - store_test_results:
+          path: test/
+      - store_artifacts:
+          path: test-results          
+  scan_app:
+    docker:
+      - image: cimg/node:14.16.0
+    steps:
+      - checkout
+      - run:
+          name: Snyk Scan Application files 
+          command: npm install 
+      - snyk/scan:
+          fail-on-issues: false
+          monitor-on-build: false
+  build_docker_image:
+    machine:
+      image: ubuntu-2004:202101-01
+    resource_class: arm.medium
+    steps:
+      - checkout  
+      - docker/check
+      - docker/build:
+          image: $DOCKER_LOGIN/$CIRCLE_PROJECT_REPONAME
+          tag: 0.1.<< pipeline.number >>
+      - docker/push:
+          image: $DOCKER_LOGIN/$CIRCLE_PROJECT_REPONAME
+          tag: 0.1.<< pipeline.number >>
+{{</highlight>}}
 
 ## Summary
 
-In this module you learned about Infrastructure as Code concepts and Hashicorp Terraform. You also learned how to create pipeline jobs that build an AWS ECR and how to execute essential Docker commands to build a Docker image and push it to the respective AWS ECR.
+In this module you learned about Infrastructure as Code concepts and Hashicorp Terraform. You learned how to create pipeline jobs that executes essential docker commands to build a Docker image and push it to Docker Hub. You also learned about Arm architectures and how CircleCI and AWS supports Arm CI/CD pipelines and Arm capable infrastructures.
 
 Jump over to the next module, Continuous Deployment, where you will learn how to:
 
-- Create AWS App Runner infrastructure
-- Deploy the Docker image
+- Create an Amazon ECS Cluster
+- Deploy a Docker image
 - Test the image deployment using smoke-tests
 - Destroy all the infrastructure and resources using Terraform
 
 <!-- URL Links index -->
-[1]: https://circleci.com/docs/2.0/configuration-reference/#setupremotedocker
+[1]: https://developer.arm.com/architectures
 [2]: https://circleci.com/docs/2.0/building-docker-images/
 [3]: https://circleci.com/docs/2.0/persist-data/#using-workspaces
 [4]: https://circleci.com/developer/orbs/orb/circleci/aws-cli
@@ -255,3 +195,10 @@ Jump over to the next module, Continuous Deployment, where you will learn how to
 [7]: https://docs.docker.com/engine/reference/commandline/build/
 [8]: https://docs.docker.com/engine/reference/builder/
 [9]: https://docs.docker.com/engine/reference/commandline/push/
+[10]: https://docs.docker.com/docker-hub/
+[10]: https://aws.amazon.com/pm/ec2-graviton/
+[11]: https://en.wikipedia.org/wiki/X86
+[12]: https://circleci.com/docs/2.0/configuration-reference/#machine
+[13]: https://circleci.com/docs/2.0/arm-resources/
+[14]: https://circleci.com/docs/2.0/configuration-reference/#available-machine-images
+[15]: https://circleci.com/docs/2.0/optimizations/#resource-class

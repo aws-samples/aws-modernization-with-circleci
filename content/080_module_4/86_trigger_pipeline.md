@@ -20,7 +20,8 @@ orbs:
   snyk: snyk/snyk@0.1.0
   aws-cli: circleci/aws-cli@2.0.2
   node: circleci/node@4.2.0
-  terraform: circleci/terraform@2.0.0  
+  docker: circleci/docker@1.5.0
+  terraform: circleci/terraform@3.0.0
 jobs:
   run_tests:
     docker:
@@ -50,175 +51,101 @@ jobs:
       - snyk/scan:
           fail-on-issues: false
           monitor-on-build: false
-  create_ecr_repo:
-    docker:
-      - image: cimg/node:14.16.0
+  build_docker_image:
+    machine:
+      image: ubuntu-2004:202101-01
+    resource_class: arm.medium
+    steps:
+      - checkout  
+      - docker/check
+      - docker/build:
+          image: $DOCKER_LOGIN/$CIRCLE_PROJECT_REPONAME
+          tag: 0.1.<< pipeline.number >>
+      - docker/push:
+          image: $DOCKER_LOGIN/$CIRCLE_PROJECT_REPONAME
+          tag: 0.1.<< pipeline.number >>
+  deploy_aws_ecs:
+    machine:
+      image: ubuntu-2004:202101-01
+    resource_class: arm.medium
     steps:
       - checkout
       - run:
           name: Create .terraformrc file locally
           command: echo "credentials \"app.terraform.io\" {token = \"$TERRAFORM_TOKEN\"}" > $HOME/.terraformrc
       - terraform/install:
-          terraform_version: "0.14.10"
-          arch: "amd64"
+          terraform_version: "1.0.2"
+          arch: "arm64"
           os: "linux"
-      - run:
-          name: Create ECR Repo
-          command: echo 'Create AWS ECR Repo with Terraform'
       - terraform/init:
-          path: ./terraform/ecr
-      - terraform/apply:
-          path: ./terraform/ecr
-      - run: 
-          name: "Retrieve ECR URIs"
-          command: |
-            cd ./terraform/ecr
-            mkdir -p /tmp/ecr/
-            terraform init
-            echo 'export ECR_NAME='$(terraform output ECR_NAME) >> /tmp/ecr/ecr_envars
-            export ECR_PUBLIC_URI=$(terraform output ECR_URI)
-            echo 'export ECR_PUBLIC_URI='$ECR_PUBLIC_URI >> /tmp/ecr/ecr_envars
-            echo 'export ECR_URL='$(echo ${ECR_PUBLIC_URI:1:-1} | cut -d"/" -f1,2) >> /tmp/ecr/ecr_envars
-      - persist_to_workspace:
-          root: /tmp/ecr/
-          paths:
-            - "*"
-  build_push_docker_image:
-    docker:
-      - image: cimg/node:14.16.0
-    steps:
-      - checkout
-      - setup_remote_docker
-      - attach_workspace:
-          at: /tmp/ecr/      
-      - aws-cli/install
-      - aws-cli/setup:
-          aws-access-key-id: AWS_ACCESS_KEY_ID
-          aws-secret-access-key: AWS_SECRET_ACCESS_KEY
+          path: ./terraform/ecs
+      - terraform/plan:
+          path: ./terraform/ecs
       - run:
-          name: Build Docker image
+          name: Terraform apply
           command: |
-            export TAG=0.1.<< pipeline.number >>
-            echo 'export TAG='$TAG >> /tmp/ecr/ecr_envars
-            source /tmp/ecr/ecr_envars
-            docker build -t $ECR_PUBLIC_URI -t $ECR_PUBLIC_URI:$TAG .
-      - run:
-          name: Push to AWS ECR Public
-          command: |
-            source /tmp/ecr/ecr_envars
-            aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin $ECR_URL
-            docker push $ECR_PUBLIC_URI
-      - persist_to_workspace:
-          root: /tmp/ecr/
-          paths:
-            - "*"
-  create_deploy_app_runner:
-    docker:
-      - image: cimg/node:14.16.0
-    steps:
-      - checkout
-      - attach_workspace:
-          at: /tmp/ecr/
-      - terraform/install:
-          terraform_version: "0.14.10"
-          arch: "amd64"
-          os: "linux"
-      - run:
-          name: Create and Deploy App Runner
-          command: |
-            source /tmp/ecr/ecr_envars
-            cd ./terraform/app-runner/
-            echo "credentials \"app.terraform.io\" {token = \"$TERRAFORM_TOKEN\"}" > $HOME/.terraformrc
-            terraform init
-            terraform apply -var image_name=$ECR_PUBLIC_URI \
-              -var image_tag=$TAG \
+            terraform -chdir=./terraform/ecs apply \
+              -var docker_img_name=${DOCKER_LOGIN}/${CIRCLE_PROJECT_REPONAME} \
+              -var docker_img_tag=0.1.<< pipeline.number >> \
               -auto-approve
-            echo 'export ENDPOINT='$(terraform output apprunner_service_url) >> /tmp/ecr/ecr_envars
+            export ENDPOINT="$(terraform -chdir=./terraform/ecs output load_balancer_hostname)"
+            mkdir -p /tmp/ecs/
+            echo 'export ENDPOINT='${ENDPOINT} > /tmp/ecs/endpoint
       - persist_to_workspace:
-          root: /tmp/ecr/
+          root: /tmp/ecs/
           paths:
-            - "*"
+            - "*"      
+      - run: sleep 80
   smoketest_deployment:
-    docker:
-      - image: cimg/node:14.16.0
+    machine:
+      image: ubuntu-2004:202101-01
+    resource_class: arm.medium
     steps:
       - checkout
       - attach_workspace:
-          at: /tmp/ecr/
+          at: /tmp/ecs/
       - run:
-          name: Smoke Test App Runner Deployment
+          name: Smoke Test ECS Deployment
           command: |
-            source /tmp/ecr/ecr_envars
-            ./test/smoke_test $ENDPOINT       
-  destroy_ecr:
-    docker:
-      - image: cimg/node:14.16.0
+            source /tmp/ecs/endpoint
+            ./test/smoke_test $ENDPOINT
+  destroy_aws_ecs:
+    machine:
+      image: ubuntu-2004:202101-01
+    resource_class: arm.medium
     steps:
       - checkout
-      - aws-cli/install
-      - aws-cli/setup:
-          aws-access-key-id: AWS_ACCESS_KEY_ID
-          aws-secret-access-key: AWS_SECRET_ACCESS_KEY
-      - attach_workspace:
-          at: /tmp/ecr/
       - run:
           name: Create .terraformrc file locally
-          command: echo "credentials \"app.terraform.io\" {token = \"$TERRAFORM_TOKEN\"}" > $HOME/.terraformrc && cat $HOME/.terraformrc
+          command: echo "credentials \"app.terraform.io\" {token = \"$TERRAFORM_TOKEN\"}" > $HOME/.terraformrc
       - terraform/install:
-          terraform_version: "0.14.10"
-          arch: "amd64"
+          terraform_version: "1.0.2"
+          arch: "arm64"
           os: "linux"
-      - run:
-          name: Prep AWS ECR Destroy
-          command: |
-            source /tmp/ecr/ecr_envars
-            sudo apt-get update && sudo apt-get install -y groff groff-base less wget
-            aws ecr-public delete-repository --region us-east-1 --repository-name $ECR_NAME --force
       - terraform/init:
-          path: ./terraform/ecr
+          path: ./terraform/ecs
+      - terraform/plan:
+          path: ./terraform/ecs
       - terraform/destroy:
-          path: ./terraform/ecr
-  destroy_app_runner:
-    docker:
-      - image: cimg/node:14.16.0
-    steps:
-      - checkout
-      - attach_workspace:
-          at: /tmp/ecr/
-      - run:
-          name: Create .terraformrc file locally
-          command: echo "credentials \"app.terraform.io\" {token = \"$TERRAFORM_TOKEN\"}" > $HOME/.terraformrc && cat $HOME/.terraformrc
-      - terraform/install:
-          terraform_version: "0.14.10"
-          arch: "amd64"
-      - terraform/init:
-          path: ./terraform/app-runner/
-      - terraform/destroy:
-          path: ./terraform/app-runner/
+          path: ./terraform/ecs
 workflows:
-  scan_deploy:
+  build:
     jobs:
       - run_tests
       - scan_app
-      - create_ecr_repo
-      - build_push_docker_image:
+      - build_docker_image
+      - deploy_aws_ecs:
           requires:
-            - create_ecr_repo
-      - create_deploy_app_runner:
-          requires:
-            - build_push_docker_image
+            - build_docker_image          
       - smoketest_deployment:
           requires:
-            - create_deploy_app_runner
+            - deploy_aws_ecs
       - approve_destroy:
           type: approval
           requires:
-            - smoketest_deployment            
-      - destroy_ecr:
-          requires:
-            - approve_destroy
-      - destroy_app_runner:
-          requires:
+            - smoketest_deployment
+      - destroy_aws_ecs:
+          requires
             - approve_destroy
 {{</highlight>}}
 
@@ -238,13 +165,13 @@ git push
 
 After the *git push* command is executed you can jump over to the [CircleCI Dashboard][1] and you should see your pipeline executing similar to the example below:
 
-![running pipelines](/images/triggered-pipeline.png)
+![running pipelines](/images/triggered-ecs-pipeline.png)
 
 ## Manually verify the application deployment
 
 After the *smoketest_deployment* job successfully completes, the pipeline will stop at the *approve_destroy* approval job and will require manual intervention to continue executing. Before you manually approve the pipeline continuation, you should see your application actually running. In the CircleCI dashboard, click the *create_deploy_app_runner* job and then click the *Create and Deploy App Runner* dropdown to get your *apprunner_service_url* and paste it into a browser to see the application running live in your newly created App Runner service. The image below shows where to find the url but be aware, your url value will be completely different from the example.
 
-![apprunnerurl](/images/app_url.png)
+![ecs endpoint url](/images/app_url.png)
 
 ## Manually approve the destroy jobs
 

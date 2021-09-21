@@ -24,8 +24,8 @@ Below are some core concepts of Continuous Deployment:
 
 In this module you will:
 
-- Build a job that creates an App Runner instance via Terraform
-- Deploy the project app container to App Runner
+- Build a job that creates an [AWS Elastic Container Service][3] Cluster powered by [AWS Graviton (Arm) EC2][2] compute nodes, via Terraform
+- Deploy the project app container to ECS
 - Build a job that tests the deployment to ensure its valid and functioning as expected
 - Build jobs that will destroy all of the infrastructures and resources created by previous pipeline jobs
 
@@ -33,3 +33,5 @@ Now that you learned about Continuous Deployment, it's time to see it in action 
 
 <!-- URL Links index -->
 [1]: https://circleci.com/integrations/deployment/
+[2]: https://aws.amazon.com/pm/ec2-graviton/
+[3]: https://aws.amazon.com/ecs/

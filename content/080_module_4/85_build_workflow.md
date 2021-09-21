@@ -1,5 +1,5 @@
 ---
-title: "5.6 Build a CircleCI Workflow"
+title: "5.5 Build a CircleCI Workflow"
 chapter: true
 weight: 15
 ---
@@ -24,33 +24,27 @@ Copy the snippet below and append it to the bottom of your config.yml file:
 
 {{<highlight yaml>}}
 workflows:
-  scan_deploy:
+  build:
     jobs:
       - run_tests
       - scan_app
-      - create_ecr_repo
-      - build_push_docker_image:
+      - build_docker_image
+      - deploy_aws_ecs:
           requires:
-            - create_ecr_repo
-      - create_deploy_app_runner:
-          requires:
-            - build_push_docker_image
+            - build_docker_image          
       - smoketest_deployment:
           requires:
-            - create_deploy_app_runner
+            - deploy_aws_ecs
       - approve_destroy:
           type: approval
           requires:
-            - smoketest_deployment            
-      - destroy_ecr:
-          requires:
-            - approve_destroy
-      - destroy_app_runner:
+            - smoketest_deployment
+      - destroy_aws_ecs:
           requires:
             - approve_destroy
 {{</highlight>}}
 
-**workflows:** scan_deploy: block defines a CircleCI workflow that will define the jobs to execute and how they're executed. The *scan_deploy* is the an identifier/name for the workflow. A CircleCI pipeline can execute multiple workflows but in this workshop you define only one.
+**workflows:** *build:* block defines a CircleCI workflow that will define the jobs to execute and how they're executed. The *scan_deploy* is the an identifier/name for the workflow. A CircleCI pipeline can execute multiple workflows but in this workshop you define only one.
 
 **jobs:** this key defines the list of jobs that will be executed in this pipeline. The jobs listed in this workflow are the jobs you defined throughout this workshop, with the exception of the **- approve_destroy:** job.
 
@@ -58,7 +52,7 @@ Since you defined the jobs listed in this workflow, we'll discuss the *requires:
 
 ## requires: key
 
-Workflows define a list of jobs and their run order. It is possible to run jobs concurrently, sequentially, on a schedule, or with a manual gate using an approval job. Jobs are run in parallel by default, so you must explicitly require any dependencies by their job name. The [requires:][16] key is what creates dependencies between jobs. In the workflow snippet above, there are job that must be execute before others. For example the AWS ECR must be created before the Docker Image is pushed to it.
+Workflows define a list of jobs and their run order. It is possible to run jobs concurrently, sequentially, on a schedule, or with a manual gate using an approval job. Jobs are run in parallel by default, so you must explicitly require any dependencies by their job name. The [requires:][16] key is what creates dependencies between jobs. In the workflow snippet above, there are jobs that must be execute before others. For example the Docker image must be created and pushed to Docker Hub before the Amazon ECS service can pull and deploy it.
 
 ## type: approval
 

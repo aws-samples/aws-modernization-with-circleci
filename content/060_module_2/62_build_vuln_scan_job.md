@@ -13,10 +13,11 @@ At the end of the last module, your config.yml file was left in the state shown 
 {{<highlight yaml>}}
 version: 2.1
 orbs:
-  node: circleci/node@4.2.0
   snyk: snyk/snyk@0.1.0
   aws-cli: circleci/aws-cli@2.0.2
-  terraform: circleci/terraform@2.0.0
+  node: circleci/node@4.2.0
+  docker: circleci/docker@1.5.0
+  terraform: circleci/terraform@3.0.0
 jobs:
   run_tests:
     docker:
@@ -34,9 +35,9 @@ jobs:
       - store_test_results:
           path: test/
       - store_artifacts:
-          path: test-results          
-
+          path: test-results
 {{</highlight>}}
+
 
 ## Build a vulnerability scan job
 
@@ -77,10 +78,11 @@ At the end of this section your config.yml should be identical to this code snip
 {{<highlight yaml>}}
 version: 2.1
 orbs:
-  node: circleci/node@4.2.0
   snyk: snyk/snyk@0.1.0
   aws-cli: circleci/aws-cli@2.0.2
-  terraform: circleci/terraform@2.0.0
+  node: circleci/node@4.2.0
+  docker: circleci/docker@1.5.0
+  terraform: circleci/terraform@3.0.0
 jobs:
   run_tests:
     docker:

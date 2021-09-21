@@ -13,11 +13,11 @@ Replace the all the content inside of the config.yml by copying and pasting the 
 {{<highlight yaml>}}
 version: 2.1
 orbs:
-  node: circleci/node@4.2.0
   snyk: snyk/snyk@0.1.0
   aws-cli: circleci/aws-cli@2.0.2
-  terraform: circleci/terraform@2.0.0
-
+  node: circleci/node@4.2.0
+  docker: circleci/docker@1.5.0
+  terraform: circleci/terraform@3.0.0
 {{</highlight>}}
 
 ### versions:
@@ -42,7 +42,6 @@ jobs:
       - node/install-packages:
           override-ci-command: npm install
           cache-path: ~/project/node_modules
-
 {{</highlight>}}
 
 In above example, there is a job defined with the **run_test:** key which is essentially a label or name for this job and used as an identifier. When naming jobs try to use meaningful naming conventions that purposely  describe what they do for readability, maintainability and execution with in pipelines.
@@ -81,10 +80,11 @@ At the end of this section your config.yml should be identical to the code snipp
 {{<highlight yaml>}}
 version: 2.1
 orbs:
-  node: circleci/node@4.2.0
   snyk: snyk/snyk@0.1.0
   aws-cli: circleci/aws-cli@2.0.2
-  terraform: circleci/terraform@2.0.0
+  node: circleci/node@4.2.0
+  docker: circleci/docker@1.5.0
+  terraform: circleci/terraform@3.0.0
 jobs:
   run_tests:
     docker:
@@ -102,8 +102,7 @@ jobs:
       - store_test_results:
           path: test/
       - store_artifacts:
-          path: test-results          
-
+          path: test-results
 {{</highlight>}}
 
 Now that you've learned about continuous integration, CircleCI's config.yml and implemented an app testing pipeline job, you are ready for the next section which will cover DevSecOps and security concepts developers can easily implement into their pipelines.
