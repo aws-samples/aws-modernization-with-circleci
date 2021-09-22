@@ -145,7 +145,7 @@ workflows:
           requires:
             - smoketest_deployment
       - destroy_aws_ecs:
-          requires
+          requires:
             - approve_destroy
 {{</highlight>}}
 
