@@ -20,6 +20,9 @@ Copy the values for:
 
 to a local notepad or notes application. You will need these values so CircleCI can access your EE AWS account to create the CICD pipeline!
 
+Also, click the SSH Key button on the top right of the dashboard. This will show you the private key string as well as the keypair name. Save the name as well, it should be `ee-default-keypair`
+    ![img.png](/images/keypair.png)
+
 {{% notice info %}}
 **Store the secret access key** in a safe place. Once you click out of the box, that key will **no longer** be accessible. You will have to delete that access key pair and generate a new one.
 {{% /notice %}}

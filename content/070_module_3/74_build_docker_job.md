@@ -6,11 +6,11 @@ weight: 12
 
 ## Docker Images and Containers
 
-Docker is an open platform for developing, shipping, and running applications. Docker enables you to separate your applications from your infrastructure so you can deliver software quickly. With Docker, you can manage your infrastructure in the same ways you manage your applications. By taking advantage of Docker’s methodologies for shipping, testing, and deploying code quickly, you can significantly reduce the delay between writing code and running it in production.
+Docker is an open platform for developing, shipping, and running applications. Docker enables you to separate your applications from your infrastructure, so you can deliver software quickly. With Docker, you can manage your infrastructure in the same ways you manage your applications. By taking advantage of Docker’s methodologies for shipping, testing, and deploying code quickly, you can significantly reduce the delay between writing code and running it in production.
 
 A Docker image is a read-only template with instructions for creating a Docker container. Often, an image is based on another image, with some additional customization. For example, you may build an image which is based on the ubuntu image, but installs the Apache web server and your application, and includes the configuration details needed to make your application run.
 
-You might create your own images or you might only use images created by others and published in a registry. To build your own image, you create a Dockerfile with a simple syntax for defining the steps needed to create the image and run it. Each instruction in a Dockerfile creates a layer in the image. When you change the Dockerfile and rebuild the image, only those layers that have changed are rebuilt. This is part of what makes images so lightweight, small, and fast when compared to other virtualization technologies.
+You might create your own images, or you might only use images created by others and published in a registry. To build your own image, you create a Dockerfile with a simple syntax for defining the steps needed to create the image and run it. Each instruction in a Dockerfile creates a layer in the image. When you change the Dockerfile and rebuild the image, only those layers that have changed are rebuilt. This is part of what makes images so lightweight, small, and fast when compared to other virtualization technologies.
 
 A Docker container is a runnable instance of an image. You can create, start, stop, move, or delete a container using the Docker API or CLI. You can connect a container to one or more networks, attach storage to it, or even create a new image based on its current state.
 
@@ -22,7 +22,7 @@ In this section, you will create a Docker image for the project application, so 
 
 ## AWS Graviton EC2 (Arm) Compute Nodes
 
-This project provisions an AWS ECS cluster that is powered by [AWS Gravition EC2 compute nodes][10] which are powered by [Arm based][1] processors. Arm based architectures are incompatible with [x86][11] architectures which means software and docker images must be compiled for the architectures that they're going to be deployed to. Since were deploying to an Arm architecture, we need to build our Docker image on an Arm based executor in our pipeline.
+This project provisions an AWS ECS cluster that is powered by [AWS Graviton EC2 compute nodes][10] which are powered by [Arm based][1] processors. Arm based architectures are incompatible with [x86][11] architectures which means software and docker images must be compiled for the architectures that they're going to be deployed to. Since were deploying to an Arm architecture, we need to build our Docker image on an Arm based executor in our pipeline.
 
 CircleCI has [Arm based resources classes][12] that can be defined and implemented to code on Arm executors. This enables you to build Arm compatible artifacts such as the Docker image we'll deploy to an ECS cluster. In the sections below we will build a job that leverages CircleCI's Arm resource class executor to build an Arm compatible Docker image.
 
