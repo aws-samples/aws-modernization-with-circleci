@@ -33,5 +33,5 @@ Now that you learned about Continuous Deployment, it's time to see it in action 
 
 <!-- URL Links index -->
 [1]: https://circleci.com/integrations/deployment/
-[2]: https://aws.amazon.com/pm/ec2-graviton/
+[2]: http://aws.amazon.com/ec2/graviton
 [3]: https://aws.amazon.com/ecs/
