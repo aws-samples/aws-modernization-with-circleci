@@ -20,7 +20,7 @@ There are a few prerequisite tasks you must perform before getting started on th
 [1]: https://github.com/
 [2]: https://hub.docker.com/signup
 [3]: https://app.snyk.io/login
-[4]: https://circleci.com/signup/
+[4]: https://circleci.com/signup/?utm_medium=partner&utm_source=aws&utm_campaign=aws-modernization-workshop&utm_content=aws-modernization-workshop
 [5]: https://app.terraform.io/signup/account
 [6]: https://aws.amazon.com/free/
 
