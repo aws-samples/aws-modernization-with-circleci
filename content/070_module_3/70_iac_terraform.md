@@ -6,19 +6,19 @@ weight: 10
 
 ## Terraform Intro
 
-[Terraform is a tool][1] for building, changing, and versioning infrastructure safely and efficiently. Terraform can manage existing and popular service providers as well as custom in-house solutions.
+[Terraform](https://www.terraform.io) is a tool for building, changing, and versioning infrastructure safely and efficiently. Terraform can manage existing and popular service providers as well as custom in-house solutions.
 
 Configuration files describe to Terraform the components needed to run everything from a single application to your entire datacenter. Terraform generates an execution plan describing what it will do to reach the desired state, and then executes it to build the described infrastructure. As the configuration changes, Terraform is able to determine what changed and create incremental execution plans which can be applied.
 
 The infrastructure Terraform can manage includes low-level components such as compute instances, storage, and networking, as well as high-level components such as DNS entries and SaaS features.
 
-Terraform will be used in this workshop to provision and destroy all of the infrastructures and resources required by the pipeline to deploy. It will also be used to test those deployments in their target environments.
+Terraform will be used in this workshop to provision and destroy all the infrastructures and resources required by the pipeline to deploy. It will also be used to test those deployments in their target environments.
 
 ## Terraform project code
 
-The [example project repo][10] has a directory named `terraform/` that houses all the IaC code for the project. Within this directory are two other directories:
+The [example project repo](https://github.com/CircleCI-Public/aws-circleci-modernization-workshop-code) has a directory named `terraform/` that houses all the IaC code for the project. Within this directory are two other directories:
 
-- The `ecs/` directory contains the Terraform code for the [Amazon Elastic Container Service (ECS)][2] used in the pipeline. 
+- The `ecs/` directory contains the Terraform code for the [Amazon Elastic Container Service (ECS)](https://aws.amazon.com/ecs/) used in the pipeline. 
 
 
 <table class="credit">
@@ -32,7 +32,7 @@ In Terraform, the root module is the working directory where Terraform is invoke
 
 ## Terraform CLI + Terraform Cloud
 
-[Terraform CLI][5] is the command line interface to Terraform. The CLI is available by using the terraform command, which accepts a variety of subcommands like `terraform init` or `terraform plan`. A full list of all of the supported subcommands is in the navigation section of the linked page.
+[Terraform CLI][5] is the command line interface to Terraform. The CLI is available by using the terraform command, which accepts a variety of subcommands like `terraform init` or `terraform plan`. A full list of all the supported subcommands is in the navigation section of the linked page.
 
 The "Terraform CLI" terminology is often used to distinguish it from other components you might use in the Terraform product family, such as Terraform Cloud or the various Terraform providers, which are developed and released separately from Terraform CLI. The Terraform CLI is primarily a local/developer environment tool used to execute Terraform code.
 
@@ -75,6 +75,14 @@ Here is a break down of what the elements and blocks in this code snippet do:
 
 <!-- Use this output block in a later section -->
 - The `output {}` block defines [output values][9] that make information about your infrastructure available on the command line, and can expose information for other Terraform configurations to use. Output values are similar to return values in programming languages. These output values provide a solid mechanism for retrieving infrastructure data that can be passed between CI/CD jobs in a pipeline.
+
+Another thing to note is this file in the forked repo: terraform/ecs/variables.tf
+Remember the keypair name you copied or created earlier? You'll need to update this file by updating the default value to `ee-default-keypair` so it looks like this:
+  ![variables.tf changes](/images/keypair-name.png)
+
+{{% notice info %}}
+If you created your keypair name, remember that keypair name and add that there. The ee-default-keypair name is for attendees that are attending an AWS hosted workshop.
+{{% /notice %}}
 
 Now that we've covered some basics of Terraform CLI and a small snippet of Terraform code, you can go to the next section, where you'll learn how to build a new job that will create a new [Docker image][3] for the application in the project.
 

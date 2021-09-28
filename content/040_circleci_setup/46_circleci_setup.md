@@ -35,6 +35,9 @@ Value: Your AWS IAM Accounts Access Key ID
 Name: AWS_SECRET_ACCESS_KEY 
 Value: Your AWS IAM Accounts Secret Access Key
 
+Name: AWS_SESSION_TOKEN
+Value: Your AWS IAM Accounts session token
+
 Name: DOCKER_LOGIN 
 Value: Your Docker Hub user name
 
@@ -44,7 +47,7 @@ Value: Your Docker Hub Access Token
 Name: SNYK_TOKEN 
 Value: Your Snyk Access Token
 
-Name:   TERRAFORM_TOKEN 
+Name: TERRAFORM_TOKEN 
 Value: Your Terraform Cloud API Token
 ```
 

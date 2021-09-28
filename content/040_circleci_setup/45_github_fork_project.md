@@ -20,11 +20,12 @@ Execute the code snippet below to create the SSH keys to access GitHub:
 
 ```bash
 # This is to generate a SSH public key on your Cloud9 machine
-# Press enter 3 times: do not rename the public key filename nor enter the passphrase
 ssh-keygen -t ed25519 -C "your_email@example.com"
 ```
 
-Next execute the below command and copy the output
+Press enter 3 times: do not rename the public key filename nor enter the passphrase.
+
+Next, execute the below command and copy the output
 ```
 # We're copying the public key value onto your clipboard 
 cat ~/.ssh/id_ed25519.pub
@@ -48,10 +49,10 @@ There are more details about [adding SSH Keys to GitHub here][3].
     
 3. Now that you have forked over the project repo, git clone it to your Cloud9 instance via **SSH** 
 
+The {YourGithubUserName} represents your GitHub user name
 ```bash
 # Command to clone the repo via SSH
-# The {YourGithubUserName} represents your GitHub user name
-git clone git@github.com:{YourGithubUserName}/aws-modernization-with-circleci.git
+git clone git@github.com:{YourGithubUserName}/aws-circleci-modernization-workshop-code.git
 ```
 
 Now that you have created new SSH Keys, assigned them in GitHub, and forked over the project repo, you can start setting up this project repo in CircleCI.

@@ -12,7 +12,8 @@ Welcome to the Event Engine Setup section! This means that you are attending an 
 Here is a preview of what we will be setting up:
 
 1. Creating a Cloud9 IDE Workspace
-1. Creating and attaching an IAM Role
-1. How to get the access/secret key for CircleCI's environment variable
+1. Creating an IAM Role
+1. Attaching an IAM Role
+1. Configuring Cloud9 Workspace
 
 The next page will show you how to gain access to your Event Engine dashboard!
