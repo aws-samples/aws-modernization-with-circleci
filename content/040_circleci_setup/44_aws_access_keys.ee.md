@@ -1,5 +1,5 @@
              ---
-title: "1.3 AWS: Create Access Keys"
+title: "1.4 AWS: Create Access Keys"
 chapter: true
 weight: 16
 ---
@@ -12,7 +12,13 @@ When you try to access your AWS console via Event Engine, you should see this:
 
 ![Access key](/images/ee-access-key.png)
 
-Copy the values for **AWS_ACCESS_KEY_ID** and **AWS_SECRET_ACCESS_KEY** to a local notepad or notes application.
+Copy the values for:
+
+- **AWS_ACCESS_KEY_ID**
+- **AWS_SECRET_ACCESS_KEY**
+- **AWS_SESSION_TOKEN** 
+
+to a local notepad or notes application. You will need these values so CircleCI can access your EE AWS account to create the CICD pipeline!
 
 {{% notice info %}}
 **Store the secret access key** in a safe place. Once you click out of the box, that key will **no longer** be accessible. You will have to delete that access key pair and generate a new one.

@@ -1,5 +1,5 @@
 ---
-title: "5.7 Trigger the CI/CD Pipeline"
+title: "5.6 Trigger the CI/CD Pipeline"
 chapter: true
 weight: 16
 ---
