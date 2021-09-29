@@ -24,10 +24,10 @@ Below are some core concepts of Continuous Deployment:
 
 In this module you will:
 
-- Build a job that creates an [AWS Elastic Container Service][3] Cluster powered by [AWS Graviton (Arm) EC2][2] compute nodes, via Terraform
+- Build a job that creates an [AWS Elastic Container Service][3] Cluster powered by [AWS Graviton (Arm) EC2](http://aws.amazon.com/ec2/graviton) compute nodes, via Terraform
 - Deploy the project app container to ECS
 - Build a job that tests the deployment to ensure its valid and functioning as expected
-- Build jobs that will destroy all of the infrastructures and resources created by previous pipeline jobs
+- Build jobs that will destroy all the infrastructures and resources created by previous pipeline jobs
 
 Now that you learned about Continuous Deployment, it's time to see it in action within your CI/CD pipeline, so jump over to the next section and get started with building jobs that demonstrate Continuous Deployment concepts.
 
