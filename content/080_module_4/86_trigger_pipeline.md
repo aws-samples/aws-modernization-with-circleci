@@ -154,7 +154,7 @@ workflows:
 Now that you have your well formed *config.yml* ready to execute, let's trigger this pipeline and make magic happen. To trigger your pipeline all you have to do is perform a git commit locally and push your changes upstream. Below demonstrates how to perform this from a terminal:
 
 {{<highlight shell>}}
-git commit ./circleci/config.yml -m"Trigger the initial pipeline run."
+git commit -a -m"Trigger the initial pipeline run."
 {{</highlight>}}
 
 The next command will push the commit upstream and trigger the pipeline
