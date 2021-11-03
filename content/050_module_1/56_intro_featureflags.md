@@ -1,7 +1,7 @@
 ---
 title: "2.4 Intro to Feature Flagging"
 chapter: true
-weight: 10
+weight: 16
 ---
 
 ## Intro to LaunchDarkly

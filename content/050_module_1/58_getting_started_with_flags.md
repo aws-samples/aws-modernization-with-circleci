@@ -1,7 +1,7 @@
 ---
 title: "2.5 Getting started with LaunchDarkly"
 chapter: true
-weight: 10
+weight: 18
 ---
 
 ## Creating a flag
