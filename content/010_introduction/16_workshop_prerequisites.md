@@ -14,6 +14,7 @@ There are a few prerequisite tasks you must perform before getting started on th
 1. Create a [CircleCI account][4]
 1. Create a [Terraform Cloud account][5]
 1. Create an [AWS account][6]
+1. Create a [LaunchDarkly account][7]
 <!-- 1. Create a Cloud9 IDE Workspace -->
 
 <!-- URL Links index -->
@@ -23,6 +24,7 @@ There are a few prerequisite tasks you must perform before getting started on th
 [4]: https://circleci.com/signup/?utm_medium=partner&utm_source=aws&utm_campaign=aws-modernization-workshop&utm_content=aws-modernization-workshop
 [5]: https://app.terraform.io/signup/account
 [6]: https://aws.amazon.com/free/
+[7]: https://launchdarkly.com/start-trial/
 
 {{% notice info %}}
 Skip to the next section of you already have accounts for these services.
