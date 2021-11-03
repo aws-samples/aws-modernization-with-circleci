@@ -1,5 +1,5 @@
 ---
-title: "1.6 CircleCI: Setup Project"
+title: "1.7 CircleCI: Setup Project"
 chapter: true
 weight: 20
 ---

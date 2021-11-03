@@ -173,6 +173,10 @@ After the *smoketest_deployment* job successfully completes, the pipeline will s
 
 ![ecs endpoint url](/images/app_url.png)
 
+## Validate feature flag 
+
+Here is the section where we'll add our feature flag validation step. 
+
 ## Manually approve the destroy jobs
 
 Now that the *smoketest_deployment* job has successfully completed and you've verified the application is live and functioning, it's time to click the *approve_destroy* button in the dashboard and continue the pipeline which will execute the destroy jobs and destroy the unnecessary infrastructures and resources created in previous jobs. The image below shows a paused pipeline awaiting an approval button click.
