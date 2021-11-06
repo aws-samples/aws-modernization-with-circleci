@@ -11,7 +11,7 @@ In the previous section, you forked the [example project repository][1] in GitHu
 1. Go to your [CircleCI dashboard](https://circleci.com/vcs-authorize/). If you haven't signed up at this point, log in with your GitHub credentials
 1. ![CircleCI Login](/images/circleci-signup.png) 
 1. On the left-hand side, click the Projects section and you will land here:
-1. ![CircleCI Projects Dashboard](/images/circleci-project-dashboard.png)
+1. ![CircleCI Projects Dashboard](https://user-images.githubusercontent.com/34189788/140592376-2f6bd638-f79c-40ca-aa50-7b3488f810d3.png)
 1. Click **Set Up Project** next to the name of your new project
 1. On the **New Project Set Up** page, select the **Skip this step** option
 1. ![Skip Config](/images/skip-config.png)
