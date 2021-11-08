@@ -23,22 +23,27 @@ LaunchDarkly provides feature flag SDKs for:
 - [Node.JS](http://docs.launchdarkly.com/docs/node-sdk-reference)
 - [.NET](http://docs.launchdarkly.com/docs/dotnet-sdk-reference)
 - [Ruby](http://docs.launchdarkly.com/docs/ruby-sdk-reference)
-- [Python Twisted](http://docs.launchdarkly.com/docs/python-twisted-sdk-reference)
 - [iOS](http://docs.launchdarkly.com/docs/ios-sdk-reference)
 - [Android](http://docs.launchdarkly.com/docs/android-sdk-reference)
 
-Many of the specific uses for LaunchDarkly’s features are covered within the [uses](https://github.com/launchdarkly/featureflags/blob/master/2%20-%20Uses.md) section of our guide, although we recommend you start with the [first chapter](https://github.com/launchdarkly/featureflags/blob/master/1%20-%20Introduction.md) for a comprehensive overview. For other questions, technical or otherwise, feel free to visit our site’s [FAQ](https://launchdarkly.com/faq.html) or our [support page](https://support.launchdarkly.com/)!
+Many of the specific uses for LaunchDarkly’s features are covered within the [uses](https://github.com/launchdarkly/featureflags/blob/master/2%20-%20Uses.md) section of our guide, although we recommend you start with the [first chapter](https://github.com/launchdarkly/featureflags/blob/master/1%20-%20Introduction.md) for a comprehensive overview. For other questions, technical or otherwise, feel free to visit our site’s [guide to feature management](https://launchdarkly.com/the-definitive-guide-to-feature-management/) or our [support page](https://support.launchdarkly.com/)!
 
 ## Integrations
 
 LaunchDarkly has numerous software integrations that are designed to make your experience smoother when using feature flags in combination with other products. These include:
 
 - [Slack](http://docs.launchdarkly.com/docs/slack)
-- [HipChat](http://docs.launchdarkly.com/docs/hipchat)
+- [Teams](https://docs.launchdarkly.com/integrations/microsoft-teams)
 - [Webhooks](http://docs.launchdarkly.com/docs/webhooks)
-- [Optimizely](http://docs.launchdarkly.com/docs/optimizely)
+- [Datadog](https://docs.launchdarkly.com/integrations/datadog)
+- [Dynatrace](https://docs.launchdarkly.com/integrations/dynatrace)
+- [Honeycomb](https://docs.launchdarkly.com/integrations/honeycomb)
 - [New Relic](http://docs.launchdarkly.com/docs/newrelic)
-- [Visual Studio Team Services](http://docs.launchdarkly.com/docs/visual-studio-team-services-extension)
+- [Splunk](https://docs.launchdarkly.com/integrations/splunk)
+- [IntelliJ](https://docs.launchdarkly.com/integrations/intellij)
+- [VSCode](https://docs.launchdarkly.com/integrations/vscode)
+- [Jira](https://docs.launchdarkly.com/integrations/jira)
+- [Azure DevOps](https://docs.launchdarkly.com/integrations/azure-devops)
 - [Bitbucket Pipelines](http://docs.launchdarkly.com/docs/bitbucket-pipelines)
 
 ## Progressive delivery
