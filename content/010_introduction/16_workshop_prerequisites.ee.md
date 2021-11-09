@@ -1,1 +1,1 @@
-./16_workshop_prerequisites.md
+16_workshop_prerequisites.md

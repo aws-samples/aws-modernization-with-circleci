@@ -24,7 +24,7 @@ We will use Amazon Cloud9 to access our AWS accounts via the AWS CLI in this Wor
 
 1. For the name use `circleci-workshop`, then click **Next step**
 
-1. Select the default instance type **t3.micro**
+1. Select the default instance type **t2.micro**
 
 1. Leave all the other settings as default and click **Next step** followed by **Create environment**
 
