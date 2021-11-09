@@ -175,7 +175,9 @@ After the *smoketest_deployment* job successfully completes, the pipeline will s
 
 ## Validate feature flag 
 
-Here is the section where we'll add our feature flag validation step. 
+Now head over to your [LaunchDarkly Dashboard](https://app.launchdarkly.com/default/test/features) and enable your flag. Once your flag has been enabled, navigate back over to your browser and hit refresh. 
+
+Now that your application is deployed and running in your ECS cluster alongside your enabled flag, you should see the message "Welcome to CI/CD 101 using CircleCI & LaunchDarkly!" when your flag is set to true, and "Welcome to CI/CD 101 using CircleCI." when set to false. 
 
 ## Manually approve the destroy jobs
 
@@ -202,6 +204,7 @@ Congratulations! You successfully completed this workshop and have learned the f
     - AWS Public ECR: push Docker image to public AWS ECR repository
     - Terraform: codify and provision AWS resources and infrastructure 
     - Terraform Cloud: centrally manage state of provisioned infrastructure
+    - LaunchDarkly: feature flags 101
 
 In the next module, you will perform some *Cleanup* actions.
 
