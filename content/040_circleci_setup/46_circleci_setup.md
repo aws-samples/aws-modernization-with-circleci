@@ -35,8 +35,12 @@ Value: Your AWS IAM Accounts Access Key ID
 Name: AWS_SECRET_ACCESS_KEY 
 Value: Your AWS IAM Accounts Secret Access Key
 
+** Note: Only used during AWS hosted events. Otherwise ignore **
+
 Name: AWS_SESSION_TOKEN
 Value: Your AWS IAM Accounts session token
+
+**
 
 Name: DOCKER_LOGIN 
 Value: Your Docker Hub user name
@@ -49,11 +53,15 @@ Value: Your Snyk Access Token
 
 Name: TERRAFORM_TOKEN 
 Value: Your Terraform Cloud API Token
+
+Name: LAUNCHDARKLY_TOKEN
+Value: Your LaunchDarkly Server-Side SDK Token
+
 ```
 
 After entering all of these environment variables, the environment variables dialog should look something like this.
 
-![Add Env Variable](/images/add-env-var.png)
+![Add Env Variable](https://user-images.githubusercontent.com/34189788/141001361-b7819831-7830-4e63-972c-014620166661.png)
 
 Click the **X** in the top right corner to return to the pipeline dashboard.
 
