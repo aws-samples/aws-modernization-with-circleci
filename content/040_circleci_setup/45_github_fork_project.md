@@ -55,6 +55,13 @@ The {YourGithubUserName} represents your GitHub user name
 git clone git@github.com:{YourGithubUserName}/aws-circleci-modernization-workshop-code.git
 ```
 
+You may be prompted to set your git *user.name* and *user.email* so run the following command in the terminal but be sure to replace the *{Your Name}* and *{Your Email address}*  values with your corresponding information.
+
+```bash
+# Commands to set your GitHub user.name and user.email address locally
+git config --global user.name "{Your Name}"
+git config --global user.email "{Your Email address}"
+```
 Now that you have created new SSH Keys, assigned them in GitHub, and forked over the project repo, you can start setting up this project repo in CircleCI.
 
 <!-- URL Links index -->

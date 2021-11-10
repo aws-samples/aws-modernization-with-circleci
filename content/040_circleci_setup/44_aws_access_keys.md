@@ -27,7 +27,19 @@ After generating the access keys, your dashboard should look something like this
 These access keys are part of an IAM User that has **administrative privileges**. Do not share these with anyone, or they will have access your AWS account with admin privileges.
 {{% /notice %}}
 
-You have created and safely stored your newly created AWS Access Keys and Secrets. Now, let's fork the GitHub example project repository for this workshop.
+## Create AWS Key Pair
+
+You will need to create an [AWS EC2 Key Pair](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html) which will grant Terraform access to provision the EC2 nodes in later sections.
+
+1. Open the Amazon EC2 console at https://console.aws.amazon.com/ec2/.
+1. In the navigation pane, under Network & Security, choose Key Pairs.
+1. Choose Create key pair.
+1. For Name, enter this value `ee-default-keypair` for the key pair
+1. For Key pair type, choose **RSA** 
+1. For Private key format, chose **.pem**
+1. Click the **Create key pair** button
+
+You have created and safely stored your newly created AWS Access Keys and Secrets and the **ee-default-keypair** AWS EC2 key pair. Now, let's fork the GitHub example project repository for this workshop.
 
 <!-- URL Links index -->
 [1]: /030_self_guided_setup/30_aws_setup_your_own.html

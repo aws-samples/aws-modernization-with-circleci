@@ -25,3 +25,12 @@ To create a feature flag:
 
 <img src="https://docs.launchdarkly.com/static/c26632369691636aca47a7d708ec5091/6af66/flag-create.png" alt="Created flag">
 
+## Capturing your SDK key
+
+In the next section, you'll be saving your environment variables within your CircleCI project. For this step, you'll need to navigate into your dashboard and hit CMD+K to bring up spotlight search within the application. 
+
+![SDK key in search](/images/SDK-Key-lookup.png)
+
+Next, search for the "SDK key" to bring up the option to copy the key for your current environment to your clipboard. Select the server-side option and keep that key safe for use in the next step. 
+
+![Server-side SDK selection](/images/Server-side-option-for-SDK-key.png)
