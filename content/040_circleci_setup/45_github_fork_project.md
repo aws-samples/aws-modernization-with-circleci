@@ -1,5 +1,5 @@
 ---
-title: "1.6 GitHub: Fork Example Project"
+title: "1.5 GitHub: Fork Example Project"
 chapter: true
 weight: 18
 ---
@@ -68,29 +68,3 @@ Now that you have created new SSH Keys, assigned them in GitHub, and forked over
 [1]: https://github.com/CircleCI-Public/aws-circleci-modernization-workshop-code
 [2]: https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh
 [3]: https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account
-
-## Add the dependency 
-
-Next you'll want to add LaunchDarkly as a dependency within your newly forked repo. 
-
-The first step is to install the LaunchDarkly SDK as a dependency in your application using your application's dependency manager.
-
-First, open the terming and run this command: 
-
-`npm install launchdarkly-node-server-sdk --save`
-
-Next, import the LaunchDarkly client in your application code:
-
-`const LaunchDarkly = require('launchdarkly-node-server-sdk');`
-
-Once the SDK is installed and imported, you'll want to create a single, shared instance of the LaunchDarkly client. You should specify your SDK key here so that your application will be authorized to connect to LaunchDarkly and for your application and environment.
-
-Here's how:
-
-`client = LaunchDarkly.init("YOUR_SDK_KEY");`
-
-The client will emit a ready event when it has been initialized and can serve feature flags.
-
-Using client, you can check which variation a particular user should receive for a given feature flag.
-
-Head [here](https://github.com/CircleCI-Public/aws-circleci-modernization-workshop-code/blob/main/app.js) to view an example of this using our current forked repo. 
