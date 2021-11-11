@@ -35,10 +35,10 @@ Value: Your AWS IAM Accounts Access Key ID
 Name: AWS_SECRET_ACCESS_KEY 
 Value: Your AWS IAM Accounts Secret Access Key
 
-** Note: Only used during AWS hosted events. Otherwise ignore **
+** Note: Only use during AWS hosted events. Otherwise ignore **
 
-Name: AWS_SESSION_TOKEN
-Value: Your AWS IAM Accounts session token
+    Name: AWS_SESSION_TOKEN
+    Value: Your AWS IAM Accounts session token
 
 **
 

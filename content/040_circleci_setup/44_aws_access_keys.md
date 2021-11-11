@@ -41,6 +41,7 @@ You will need to create an [AWS EC2 Key Pair](https://docs.aws.amazon.com/AWSEC2
 
 You have created and safely stored your newly created AWS Access Keys and Secrets and the **ee-default-keypair** AWS EC2 key pair. Now, let's fork the GitHub example project repository for this workshop.
 
+
 <!-- URL Links index -->
 [1]: /030_self_guided_setup/30_aws_setup_your_own.html
 [2]: https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh
