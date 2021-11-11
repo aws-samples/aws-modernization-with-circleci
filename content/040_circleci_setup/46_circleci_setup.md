@@ -35,8 +35,12 @@ Value: Your AWS IAM Accounts Access Key ID
 Name: AWS_SECRET_ACCESS_KEY 
 Value: Your AWS IAM Accounts Secret Access Key
 
-Name: AWS_SESSION_TOKEN
-Value: Your AWS IAM Accounts session token
+** Note: Only use during AWS hosted events. Otherwise ignore **
+
+    Name: AWS_SESSION_TOKEN
+    Value: Your AWS IAM Accounts session token
+
+**
 
 Name: DOCKER_LOGIN 
 Value: Your Docker Hub user name

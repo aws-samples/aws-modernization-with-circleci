@@ -42,7 +42,7 @@ Copy the snippet below and append it to the bottom of your config.yml file:
           root: /tmp/ecs/
           paths:
             - "*"      
-      - run: sleep 80
+      - run: sleep 90
 {{</highlight>}}
 
 You should already be familiar with the *machine:*, *resource_class:*, *steps:* and *checkout* job elements so we'll skip discussing them and focus on the remaining *- run:*  and orbs elements in this job.
@@ -70,8 +70,8 @@ You should already be familiar with the *machine:*, *resource_class:*, *steps:* 
 
 **- persist_to_workspace:** is a special key that represents a CircleCI Workspace. When a workspace is declared in a job, files and directories can be added to it. Each addition creates a new layer in the workspace filesystem. Downstream jobs can then use this workspace for their own needs or add more layers on top. Workspaces are not shared between pipeline runs. The only time a workspace can be accessed after the pipeline has run is when a workflow is rerun within the 15 day limit.
 
-**- run: sleep 80**
-  - Delays the job for 80 seconds. The ECS service needs a few seconds to deploy and propagate the deployment to all the ECS resources before executing subsequent job in this pipeline.
+**- run: sleep 90**
+  - Delays the job for 90 seconds. The ECS service needs a few seconds to deploy and propagate the deployment to all the ECS resources before executing subsequent job in this pipeline.
 
 This job demonstrates a *Continuous Deployment* because it is integrated into and executed by a job within your CI/CD pipeline and it will automatically deploy updated code to the App Runner service anytime the code is committed and pushed to the upstream project code repository.
 
