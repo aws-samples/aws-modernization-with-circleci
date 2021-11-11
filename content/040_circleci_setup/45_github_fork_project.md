@@ -1,5 +1,5 @@
 ---
-title: "1.5 GitHub: Fork Example Project"
+title: "1.6 GitHub: Fork Example Project"
 chapter: true
 weight: 18
 ---
@@ -55,9 +55,42 @@ The {YourGithubUserName} represents your GitHub user name
 git clone git@github.com:{YourGithubUserName}/aws-circleci-modernization-workshop-code.git
 ```
 
+You may be prompted to set your git *user.name* and *user.email* so run the following command in the terminal but be sure to replace the *{Your Name}* and *{Your Email address}*  values with your corresponding information.
+
+```bash
+# Commands to set your GitHub user.name and user.email address locally
+git config --global user.name "{Your Name}"
+git config --global user.email "{Your Email address}"
+```
 Now that you have created new SSH Keys, assigned them in GitHub, and forked over the project repo, you can start setting up this project repo in CircleCI.
 
 <!-- URL Links index -->
 [1]: https://github.com/CircleCI-Public/aws-circleci-modernization-workshop-code
 [2]: https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh
 [3]: https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account
+
+## Add the dependency 
+
+Next you'll want to add LaunchDarkly as a dependency within your newly forked repo. 
+
+The first step is to install the LaunchDarkly SDK as a dependency in your application using your application's dependency manager.
+
+First, open the terming and run this command: 
+
+`npm install launchdarkly-node-server-sdk --save`
+
+Next, import the LaunchDarkly client in your application code:
+
+`const LaunchDarkly = require('launchdarkly-node-server-sdk');`
+
+Once the SDK is installed and imported, you'll want to create a single, shared instance of the LaunchDarkly client. You should specify your SDK key here so that your application will be authorized to connect to LaunchDarkly and for your application and environment.
+
+Here's how:
+
+`client = LaunchDarkly.init("YOUR_SDK_KEY");`
+
+The client will emit a ready event when it has been initialized and can serve feature flags.
+
+Using client, you can check which variation a particular user should receive for a given feature flag.
+
+Head [here](https://github.com/CircleCI-Public/aws-circleci-modernization-workshop-code/blob/main/app.js) to view an example of this using our current forked repo. 
