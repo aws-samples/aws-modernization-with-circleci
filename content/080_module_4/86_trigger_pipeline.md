@@ -95,7 +95,7 @@ jobs:
           root: /tmp/ecs/
           paths:
             - "*"      
-      - run: sleep 80
+      - run: sleep 90
   smoketest_deployment:
     machine:
       image: ubuntu-2004:202101-01
@@ -173,12 +173,6 @@ After the *smoketest_deployment* job successfully completes, the pipeline will s
 
 ![ecs endpoint url](/images/app_url.png)
 
-## Validate feature flag 
-
-Now head over to your [LaunchDarkly Dashboard](https://app.launchdarkly.com/default/test/features) and enable your flag. Once your flag has been enabled, navigate back over to your browser and hit refresh. 
-
-Now that your application is deployed and running in your ECS cluster alongside your enabled flag, you should see the message "Welcome to CI/CD 101 using CircleCI & LaunchDarkly!" when your flag is set to true, and "Welcome to CI/CD 101 using CircleCI." when set to false. 
-
 ## Manually approve the destroy jobs
 
 Now that the *smoketest_deployment* job has successfully completed and you've verified the application is live and functioning, it's time to click the *approve_destroy* button in the dashboard and continue the pipeline which will execute the destroy jobs and destroy the unnecessary infrastructures and resources created in previous jobs. The image below shows a paused pipeline awaiting an approval button click.
@@ -204,7 +198,6 @@ Congratulations! You successfully completed this workshop and have learned the f
     - AWS Public ECR: push Docker image to public AWS ECR repository
     - Terraform: codify and provision AWS resources and infrastructure 
     - Terraform Cloud: centrally manage state of provisioned infrastructure
-    - LaunchDarkly: feature flags 101
 
 In the next module, you will perform some *Cleanup* actions.
 

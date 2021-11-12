@@ -1,5 +1,5 @@
 ---
-title: "1.7 CircleCI: Setup Project"
+title: "1.6 CircleCI: Setup Project"
 chapter: true
 weight: 20
 ---
@@ -11,7 +11,7 @@ In the previous section, you forked the [example project repository][1] in GitHu
 1. Go to your [CircleCI dashboard](https://circleci.com/vcs-authorize/). If you haven't signed up at this point, log in with your GitHub credentials
 1. ![CircleCI Login](/images/circleci-signup.png) 
 1. On the left-hand side, click the Projects section and you will land here:
-1. ![CircleCI Projects Dashboard](/images/circle-ci-screencap-1.png)
+1. ![CircleCI Projects Dashboard](/images/circleci-project-dashboard.png)
 1. Click **Set Up Project** next to the name of your new project
 1. On the **New Project Set Up** page, select the **Skip this step** option
 1. ![Skip Config](/images/skip-config.png)
@@ -54,14 +54,11 @@ Value: Your Snyk Access Token
 Name: TERRAFORM_TOKEN 
 Value: Your Terraform Cloud API Token
 
-Name: LAUNCHDARKLY_TOKEN
-Value: Your LaunchDarkly Server-Side SDK Token
-
 ```
 
 After entering all of these environment variables, the environment variables dialog should look something like this.
 
-![Add Env Variable](/images/env-variables.png)
+![Add Env Variable](/images/add-env-var.png)
 
 Click the **X** in the top right corner to return to the pipeline dashboard.
 

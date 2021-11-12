@@ -1,5 +1,5 @@
 ---
-title: "2.2 Intro to config.yml"
+title: "2.1 Intro to config.yml"
 chapter: true
 weight: 10
 ---
