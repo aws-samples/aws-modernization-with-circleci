@@ -13,7 +13,7 @@ At the end of the last module, your config.yml file was left in the state shown 
 {{<highlight yaml>}}
 version: 2.1
 orbs:
-  snyk: snyk/snyk@0.1.0
+  snyk: snyk/snyk@1.2.3
   aws-cli: circleci/aws-cli@2.0.2
   node: circleci/node@4.2.0
   docker: circleci/docker@1.5.0
@@ -78,7 +78,7 @@ At the end of this section your config.yml should be identical to this code snip
 {{<highlight yaml>}}
 version: 2.1
 orbs:
-  snyk: snyk/snyk@0.1.0
+  snyk: snyk/snyk@1.2.3
   aws-cli: circleci/aws-cli@2.0.2
   node: circleci/node@4.2.0
   docker: circleci/docker@1.5.0
