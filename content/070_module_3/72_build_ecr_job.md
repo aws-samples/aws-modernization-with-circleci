@@ -19,7 +19,7 @@ To complete this module, your config.yml must be identical to the one at the end
 version: 2.1
 orbs:
   node: circleci/node@4.2.0
-  snyk: snyk/snyk@0.1.0
+  snyk: snyk/snyk@1.2.3
   aws-cli: circleci/aws-cli@2.0.2
   terraform: circleci/terraform@2.0.0
 jobs:
